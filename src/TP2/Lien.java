@@ -123,7 +123,7 @@ public class Lien {
 			}
 		}
 
-		return false;
+		return changementEffectue;
 	}
 
 
