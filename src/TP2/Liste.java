@@ -83,7 +83,7 @@ public class Liste {
 		nbElements++;
 	}
 
-	private void deplacerPc(int position) {
+	public void deplacerPc(int position) {
 		if(position < iterateur) {
 			Noeud tmp = debut;
 			for(int i=0; i<position; i++) {
@@ -165,12 +165,22 @@ public class Liste {
 	
 	public Liste fusionnerListe(Liste liste) {
 		
+		Liste nouvelleListe = new Liste();
+		
+		for(int i=0; i<this.getNbrElements(); i++) {
+			
+			Object tmp = this.getElement(i);
+			nouvelleListe.insererALaPosition(tmp, i);
+		}
+		
 		for(int i=0; i<liste.getNbrElements(); i++) {
 			
 			Object tmp = liste.getElement(i);
-			this.insererALaPosition(tmp, this.nbElements);
+			nouvelleListe.insererALaPosition(tmp, nouvelleListe.nbElements);
 		}
-		return this;
+		
+		
+		return nouvelleListe;
 	}
 	
 	public Liste copie(int debut, int fin) {

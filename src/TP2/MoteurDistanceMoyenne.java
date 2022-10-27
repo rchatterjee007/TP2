@@ -1,5 +1,7 @@
+package TP2;
+
 import java.util.ArrayList;
-import java.util.Vector;
+
 
 /**
  * Cette classe implémente le moteur de calcul de distance moyenne entre 2 villes. 
@@ -92,8 +94,8 @@ public class MoteurDistanceMoyenne {
 				Noeud ceNoeud = arbre.get(j);
 				
 				// Pour la lisibilité du code.
-				int indice = ceNoeud.getSource().getIndex();
-				distances[i][indice] = ceNoeud.getdistanceDeTete();
+				int indice = ceNoeud.getSource().getNumero();
+				distances[i][indice] = ceNoeud.getDistanceTete();
 			}
 
 		}
@@ -133,19 +135,16 @@ public class MoteurDistanceMoyenne {
 		ArrayList<Ville> listeSources = new ArrayList<Ville>();
 		ArrayList<Noeud> arbre = new ArrayList<Noeud>();
 		
-        // Compléter ici
+        // Compléter icidouble distanceTete, int niveau, Ville villeSource
 		
-		/*
-		 *  Simon - Il faudrait recevoir des clarifications
-		 */
-		
-		Noeud noeud = new Noeud(listeLiens, afficher, 
+		Noeud noeud = new Noeud(0, 0, 
 				popVilles.getVille(indice));
 		
 		listeSources.add(noeud.getSource());
 		arbre.add(noeud);
 		
 		for(int i=0; i<arbre.size(); i++) {
+			//Ici on ajoute les autre noeud
 			developperNoeud(arbre, listeSources, listeLiens, i);
 		}
 		/*
@@ -170,9 +169,43 @@ public class MoteurDistanceMoyenne {
 			                    Liste listeLiens,
 			                    int noeudADevelopper){
 
-
+		
         // Compléter ici
-
+		
+		//Le noeudADevelopper est la première ville source
+		Noeud noeud = arbre.get(noeudADevelopper);
+		Ville villeSource = noeud.getSource();
+		
+		listeLiens.deplacerPc(0);
+		
+		//On parcours les liens
+		for(int i=0; i<listeLiens.getNbrElements(); i++) {
+			
+			//On récupère un lien
+			Lien lien = (Lien) listeLiens.getElement(i);
+			
+			//On regarde si la ville reçue du noeud fait partie du lien
+			if(lien.estMembre(villeSource)) {
+				
+				//On récupère la ville destination du lien
+				Ville villeDest = lien.getDest(villeSource);
+				
+				//On regarde si la liste des villes sources contient la ville
+				//destination
+				if(!listeSource.contains(villeDest)) {
+					
+					int niveau = noeud.getNiveau();
+					
+					double dist = lien.getDistance();
+					
+					Noeud noeudAvecVilleDest = new Noeud(dist, niveau++, 
+							villeDest);
+					arbre.add(noeudAvecVilleDest);
+					listeSource.add(villeDest);
+				}
+			}
+			listeLiens.deplacerPc(i);
+		}
 	}
 
 
@@ -249,9 +282,33 @@ public class MoteurDistanceMoyenne {
 	 * Ajouter - Simon
 	 */
 	private class Noeud {
+		private double distanceTete;
+		private int niveau;
+		private Ville villeSource;
+		
+		public Noeud(double distanceTete, int niveau, Ville villeSource) {
+			this.distanceTete = distanceTete;
+			this.niveau = niveau;
+			this.villeSource = villeSource;
+		}
+		
+		public double getDistanceTete() {
+			return distanceTete;
+		}
+		public Ville getSource() {
+			// TODO Auto-generated method stub
+			return villeSource;
+		}
 
-		public Noeud(Liste listeLiens, boolean afficher, Ville ville) {
-			// TODO Auto-generated constructor stub
+		public int getNiveau() {
+			// TODO Auto-generated method stub
+			return niveau;
+		}
+		
+		@Override
+		public String toString() {
+			return "Ville(Noeud) : Niv " + niveau + " DistTete " +distanceTete +
+					" Ville Source " + villeSource;
 		}
 		
 	}

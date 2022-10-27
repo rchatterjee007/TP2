@@ -54,8 +54,8 @@ public class Lien {
 	/*
 	 * Retourne la distance entre les deux villes du lien.
 	 * **/
-	public double getDistance(Ville villeSouce, Ville villedestination) {
-		return villeSource.distanceAvec(villedestination);
+	public double getDistance() {
+		return this.villeSource.distanceAvec(this.villeDestination);
 	} 
 
 	/**

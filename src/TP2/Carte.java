@@ -3,7 +3,7 @@ package TP2;
 public class Carte {
 
 	MoteurDistanceMoyenne moteurDistanceMoyenne = null;
-	int score;
+	double score;
 	Liste liste;
 	
 	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
@@ -16,7 +16,8 @@ public class Carte {
 	public Carte(Object moteurDistanceMoyenne, Liste section1, 
 			Liste section2) 
 	{
-		
+		this.moteurDistanceMoyenne = 
+				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
 		liste = section1.fusionnerListe(section2);
 	}
 	
@@ -25,14 +26,14 @@ public class Carte {
 		return liste.getNbrElements();
 	}
 	
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 	
 	public void evalueScore(boolean afficher) {
-		
+		this.score = moteurDistanceMoyenne.getDistanceMoyenne(liste, true);
 	}
-	
+
 	public void enleverLien(int indice) {
 		liste.supprimer(indice);
 	}
@@ -49,6 +50,19 @@ public class Carte {
 			nouvelleListe = liste.copie(indexCoupe, getNbLien());
 		}
 		return nouvelleListe;
+	}
+	
+	@Override
+	public String toString() {
+		String message = "";
+		
+		for(int i=0; i<liste.getNbrElements(); i++) {
+			message += liste.getElement(i).toString()
+			+"\n";
+		}
+		
+		return message;
+		
 	}
 	
 	
