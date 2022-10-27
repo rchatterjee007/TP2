@@ -60,7 +60,7 @@ public class PopulationVilles {
 
 	@Override
 	public String toString() {
-		String message=" ";
+		String message="";
 
 		for(int i=0;i<lesVilles.length;i++) {	
 			if(lesVilles[i]!=null) {

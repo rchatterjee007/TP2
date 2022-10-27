@@ -49,5 +49,7 @@ public class Ville {
 		double x=ville2.position.getX()-this.position.getX();
 		double y=ville2.position.getY()-this.position.getY();
 		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-	} 
+	}
+	
+	
 }
