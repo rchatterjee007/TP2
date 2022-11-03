@@ -1,4 +1,7 @@
-package TP2;
+package enginCartes;
+
+import TP2.Constantes;
+
 /**
  * La class qui retournes les valeurs des Constantes
  * 
@@ -6,7 +9,7 @@ package TP2;
  * @author radhikachatterjee Simon Pitre-Lamas
  * @version copyright A2022
  */
-public class Configuration {
+public class CONFIGURATION {
 
 	private double pourcentageMutation;
 	private double pourcentageRetrait;
@@ -26,7 +29,7 @@ public class Configuration {
 
 
 
-	public Configuration() {
+	public CONFIGURATION() {
 		// TODO Auto-generated constructor stub
 		this.pourcentageMutation=Constantes.POURCENTAGE_MUTATION;
 		this.pourcentageRetrait=Constantes.POURCENTAGE_RETRAIT;

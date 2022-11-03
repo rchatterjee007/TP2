@@ -1,5 +1,7 @@
 package TP2;
 
+import enginCartes.MoteurDistanceMoyenne;
+
 public class Carte {
 
 	MoteurDistanceMoyenne moteurDistanceMoyenne = null;

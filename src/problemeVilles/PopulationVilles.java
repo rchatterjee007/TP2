@@ -1,4 +1,9 @@
-package TP2;
+package problemeVilles;
+
+import TP2.Point2D;
+import TP2.Ville;
+import enginCartes.CONFIGURATION;
+
 /**
  * La population de villes est la classe qui contient toutes les villes de la région. 
  * @author radhikachatterjee
@@ -17,7 +22,7 @@ public class PopulationVilles {
 	 * 0-config.getMaxX() et 0-config.getMaxY().
 	 * 
 	 * */
-	public PopulationVilles(Configuration config) {
+	public PopulationVilles(CONFIGURATION config) {
 
 		//Initialiser le tableau avec le nbrVille de Villes
 		this.lesVilles= new Ville[config.getNbVilles()];
@@ -29,7 +34,7 @@ public class PopulationVilles {
 	}
 
 
-	public Point2D getPointsVille(Configuration config) {
+	public Point2D getPointsVille(CONFIGURATION config) {
 		double x= nbrAlea(0.0,config.getMaxX());
 		double y= nbrAlea(0.0,config.getMaxY());
 		Point2D point= new Point2D(x,y);

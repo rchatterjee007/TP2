@@ -1,11 +1,17 @@
 package TP2.Tests;
-import TP2.*;
+import TP2.Carte;
+import TP2.Lien;
+import TP2.Liste;
+import TP2.Ville;
+import enginCartes.CONFIGURATION;
+import enginCartes.MoteurDistanceMoyenne;
+import problemeVilles.PopulationVilles;
 
 public class TestMoteurDistanceMoyenne {
 
 	public static void main(String[] args) {
 		
-		Configuration conf = new Configuration();
+		CONFIGURATION conf = new CONFIGURATION();
 		PopulationVilles popsVille = new PopulationVilles(conf);
 		MoteurDistanceMoyenne mtdm = new MoteurDistanceMoyenne(popsVille);
 		

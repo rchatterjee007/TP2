@@ -3,7 +3,7 @@
  */
 package TP2.Tests;
 
-import TP2.Configuration;
+import enginCartes.CONFIGURATION;
 
 /**
  * @author radhikachatterjee
@@ -23,7 +23,7 @@ public class TestConfiguration {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Configuration conf= new Configuration();
+		CONFIGURATION conf= new CONFIGURATION();
 		
 		// TEST getPourcentageMutation
 		System.out.println(conf.getPourcentageMutation());

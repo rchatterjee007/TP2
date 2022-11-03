@@ -1,10 +1,10 @@
 package TP2.Tests;
 
-import TP2.Configuration;
+
 import TP2.Lien;
 import TP2.Point2D;
-import TP2.PopulationVilles;
 import TP2.Ville;
+import problemeVilles.PopulationVilles;
 
 public class TestLien {
 

@@ -1,7 +1,8 @@
 package TP2.Tests;
 
-import TP2.Configuration;
-import TP2.PopulationVilles;
+
+import enginCartes.CONFIGURATION;
+import problemeVilles.PopulationVilles;
 
 public class TestPopulationVilles {
 
@@ -9,7 +10,7 @@ public class TestPopulationVilles {
 		// TODO Auto-generated method stub
 		
 		
-		Configuration config = new Configuration();
+		CONFIGURATION config = new CONFIGURATION();
 		
 		//Test Constructeur PopulationVilles()
 		PopulationVilles popVilles = new PopulationVilles(config);

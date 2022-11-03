@@ -23,6 +23,14 @@ package enginCartes;
 import java.util.Random;
 import java.util.Vector;
 
+import TP2.Carte;
+import TP2.Lien;
+import TP2.Liste;
+import TP2.Ville;
+import problemeVilles.PopulationVilles;
+import enginCartes.CONFIGURATION;
+import listeChaine.ListeDChainee;
+
 public class MoteurCartes {
 
 	private PopulationVilles popVilles;
@@ -30,15 +38,15 @@ public class MoteurCartes {
 	private MoteurDistanceMoyenne moteurDistanceMoyenne;
 	
 	
-	Configuration config;
+	CONFIGURATION config;
 	
 	/**
 	 * Constructeur par paramètre
 	 * 
 	 * @param popVilles, la population de villes
 	 */
-	public MoteurCartes(PopulationVilles popVilles, Configuration config){
-		//dddd
+	public MoteurCartes(PopulationVilles popVilles, CONFIGURATION config){
+		
 		// à compléter
 	}
 	

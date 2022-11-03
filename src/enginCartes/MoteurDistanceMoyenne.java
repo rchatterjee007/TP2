@@ -1,6 +1,11 @@
-package TP2;
+package enginCartes;
 
 import java.util.ArrayList;
+
+import TP2.Lien;
+import TP2.Liste;
+import TP2.Ville;
+import problemeVilles.PopulationVilles;
 
 
 /**
