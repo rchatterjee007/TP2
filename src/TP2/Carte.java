@@ -1,6 +1,7 @@
 package TP2;
 
 import enginCartes.MoteurDistanceMoyenne;
+import listeChaine.Liste;
 
 public class Carte {
 

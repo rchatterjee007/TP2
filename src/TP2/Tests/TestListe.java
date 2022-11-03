@@ -1,8 +1,8 @@
 package TP2.Tests;
 
 import TP2.Lien;
-import TP2.Liste;
 import TP2.Ville;
+import listeChaine.Liste;
 
 public class TestListe {
 	

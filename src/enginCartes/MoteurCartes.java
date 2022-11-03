@@ -25,11 +25,9 @@ import java.util.Vector;
 
 import TP2.Carte;
 import TP2.Lien;
-import TP2.Liste;
 import TP2.Ville;
 import problemeVilles.PopulationVilles;
-import enginCartes.CONFIGURATION;
-import listeChaine.ListeDChainee;
+import listeChaine.Liste;
 
 public class MoteurCartes {
 

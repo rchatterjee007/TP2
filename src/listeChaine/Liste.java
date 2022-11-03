@@ -1,4 +1,4 @@
-package TP2;
+package listeChaine;
 
 public class Liste {
 	

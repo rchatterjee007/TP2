@@ -3,8 +3,8 @@ package enginCartes;
 import java.util.ArrayList;
 
 import TP2.Lien;
-import TP2.Liste;
 import TP2.Ville;
+import listeChaine.Liste;
 import problemeVilles.PopulationVilles;
 
 
