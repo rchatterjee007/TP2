@@ -27,15 +27,18 @@ import TP2.Carte;
 import TP2.Lien;
 import TP2.Ville;
 import problemeVilles.PopulationVilles;
+
+import enginCartes.CONFIGURATION;
 import listeChaine.Liste;
+
 
 public class MoteurCartes {
 
 	private PopulationVilles popVilles;
 	private Vector<Carte> cartes; // à remplacer par collection Java
 	private MoteurDistanceMoyenne moteurDistanceMoyenne;
-	
-	Random rand = new Random();
+	private Random rand = new Random();
+
 	CONFIGURATION config;
 	
 	/**
@@ -83,14 +86,13 @@ public class MoteurCartes {
 		for(int i=0;i<(nbCartesMax-nbCartesBase);i++){
 			
 			// selectionne 2 coupes de parents aléatoirement
-			//ListeDChainee section1 = obtientUneCoupe(sommeScore);
-			//ListeDChainee section2 = obtientUneCoupe(sommeScore);
 			Liste section1 = obtientUneCoupe(sommeScore);
 			Liste section2 = obtientUneCoupe(sommeScore);
 			
 			// assemble et ajoute le nouvel individu
 			//cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
 			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2));
+
 		}
 	
 	}
