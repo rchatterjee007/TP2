@@ -155,11 +155,15 @@ public class MoteurCartes {
 	/**
 	 * Calcul les scores des cartes
 	 */
-	public void evalueLesScores(){
-
+	public double evalueLesScores(){
+		double score=0.0;
 		// à compléter
 		
-		
+		for (int i = 0; i < cartes.size(); i++)
+        {
+           score+=cartes.get(i).getScore();
+        }
+		return score;
 		
 	}
 	
