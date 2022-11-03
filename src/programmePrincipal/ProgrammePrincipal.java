@@ -15,10 +15,7 @@ package programmePrincipal;
 import problemeVilles.PopulationVilles;
 import enginCartes.MoteurCartes;
 import enginCartes.CONFIGURATION;
-
-
 import enginCartes.MoteurDistanceMoyenne;
-import listeChainee.ListeDChainee;
 
 
 public class ProgrammePrincipal{
@@ -32,10 +29,9 @@ public class ProgrammePrincipal{
     public static void main(String[] args){
 
         // Crée une population de villes.
+    	CONFIGURATION config= new CONFIGURATION();
     	PopulationVilles popVilles =
-    			new PopulationVilles(CONFIGURATION.NOMBRE_VILLES,
-    												  CONFIGURATION.MAX_X,
-    												  CONFIGURATION.MAX_Y);
+    			new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
 
         // Crée une population de cartes.
         MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
@@ -48,13 +44,13 @@ public class ProgrammePrincipal{
 
         // Maintenant, on procède à la boucle d'optimisation pour 
     	// trouver la solution.
-        for(int i=0;i<CONFIGURATION.NB_ITERATIONS;i++)
+        for(int i=0;i<config.getNbIterations();i++)
         {
         	// Affiche l'itération courante.
         	System.out.println("" + i);
 
         	// Itération d'optimisation: élargit, évalue et réduit.
-        	enginCartes.elargitLaPopulation();
+        	enginCartes.elargieLaPopulation();
         	enginCartes.evalueLesScores();
         	enginCartes.reduitLaPopulation();
 
@@ -67,7 +63,7 @@ public class ProgrammePrincipal{
         System.out.println(popVilles);
 
         // Affiche la meilleur solution.
-        enginCartes.afficheMeilleurSolution();
+        enginCartes.getMeilleurSolution();
     }
 
 }

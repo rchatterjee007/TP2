@@ -33,6 +33,12 @@ public class PopulationVilles {
 		}
 	}
 
+	public PopulationVilles(int nbrVilles, double x, double y) {
+		this.lesVilles= new Ville[nbrVilles];
+		for(int i=0;i<lesVilles.length;i++) {	
+			lesVilles[i]= new Ville(i,getPointsVilleAvecCoordoneeMinMax(x,y));
+		}
+	}
 
 	public Point2D getPointsVille(CONFIGURATION config) {
 		double x= nbrAlea(0.0,config.getMaxX());
@@ -40,6 +46,13 @@ public class PopulationVilles {
 		Point2D point= new Point2D(x,y);
 		return point;
 	}
+	private Point2D getPointsVilleAvecCoordoneeMinMax(double x, double y) {
+		double px= nbrAlea(0.0,x);
+		double py= nbrAlea(0.0,y);
+		Point2D point= new Point2D(px,py);
+		return point;
+	}
+	
 
 
 	private double nbrAlea(double min, double max){
