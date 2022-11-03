@@ -21,10 +21,11 @@ public class Constantes {
 	public static final int PENALITE_DECONNECTE = 1000;
 	
 	//8
-	public static final int NB_VILLES = 4;
+	public static final int NB_VILLES = 8;
 	public static final int NB_ITERATIONS = 1000;
-
-	public static final int NB_CARTES_BASE = 20;
-	public static final int NB_CARTES_MAX = 60;
+	//20
+	//4
+	public static final int NB_CARTES_BASE = 2;
+	public static final int NB_CARTES_MAX = 4;
 
 }

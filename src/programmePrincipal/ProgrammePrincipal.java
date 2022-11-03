@@ -40,6 +40,7 @@ public class ProgrammePrincipal{
         // Crée une population de cartes.
         MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
 
+
         System.out.println(popVilles);
 
         // Évalue les scores une première fois.
