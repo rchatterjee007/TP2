@@ -153,7 +153,7 @@ public class MoteurCartes {
 	/**
 	 * Calcul les scores des cartes
 	 */
-	public double evalueLesScores(){
+	public void evalueLesScores(){
 
 		// à compléter
 		

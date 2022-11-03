@@ -47,7 +47,12 @@ public class PopulationVilles {
 	}	
 
 	public Ville getVille(int numero) {
-		return lesVilles[numero];
+		Ville v=null;
+		
+		if(numero!=lesVilles.length) {
+			v=lesVilles[numero];
+		}
+		return v;
 	} 
 
 	public int getNbVilles() {

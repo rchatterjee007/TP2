@@ -1,7 +1,11 @@
 package TP2.Tests;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import TP2.Lien;
+import TP2.Ville;
 import enginCartes.CONFIGURATION;
 import enginCartes.MoteurCartes;
 import problemeVilles.PopulationVilles;
@@ -12,18 +16,10 @@ public class Validation {
 		// TODO Auto-generated method stub
 		
 		CONFIGURATION config= new CONFIGURATION();
-		Random rand = new Random();
 		
 		//1.	Créer une population de Villes
 		PopulationVilles popVilles= new PopulationVilles(config);
-	
-		
-	
-		
-		
-		
-		
-		
+		lierLesVilles(popVilles);
 		
 		//2.	Instancier un engin de cartes
 		MoteurCartes enginCartes= new MoteurCartes(popVilles,config);
@@ -50,9 +46,26 @@ public class Validation {
 		enginCartes.toString();
 	}
 	
-	private void lierLesVilles(PopulationVilles popVilles) {
-		
-		
+	private static void lierLesVilles(PopulationVilles popVilles) {
+		int indexRandom=0;
+		for(int i=0;i<popVilles.getNbVilles();i++) {
+			List<Integer> indexDesVillesEnLiens = new ArrayList<>();
+			indexRandom=nbrAlea(i+1,popVilles.getNbVilles());
+			Ville Source= popVilles.getVille(i);
+			indexDesVillesEnLiens.add(i);
+			//la ville destination est aléatoire, alors tant que cette ville
+			//n'est pas une ville source ou destination 
+			
+			while(indexDesVillesEnLiens.contains(indexRandom)) {
+				indexRandom=nbrAlea(i+1,popVilles.getNbVilles());
+			}
+			indexDesVillesEnLiens.add(indexRandom);
+			Ville Destination=popVilles.getVille(indexRandom);	 
+			Lien lien=new Lien(Source,Destination);	 
+		}
 	}
+	private static int nbrAlea(int min, int max){
+		return (int) Math.round(Math.random()* (max - min) + min);
+	}	
 
 }
