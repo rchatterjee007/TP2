@@ -37,7 +37,7 @@ public class MoteurCartes {
 	private Vector<Carte> cartes; // à remplacer par collection Java
 	private MoteurDistanceMoyenne moteurDistanceMoyenne;
 	
-	
+	Random rand = new Random();
 	CONFIGURATION config;
 	
 	/**
@@ -47,7 +47,8 @@ public class MoteurCartes {
 	 */
 	public MoteurCartes(PopulationVilles popVilles, CONFIGURATION config){
 		
-		// à compléter
+		this.popVilles=popVilles;
+		this.config=config;
 	}
 	
 
@@ -84,11 +85,14 @@ public class MoteurCartes {
 		for(int i=0;i<(nbCartesMax-nbCartesBase);i++){
 			
 			// selectionne 2 coupes de parents aléatoirement
-			ListeDChainee section1 = obtientUneCoupe(sommeScore);
-			ListeDChainee section2 = obtientUneCoupe(sommeScore);
+			//ListeDChainee section1 = obtientUneCoupe(sommeScore);
+			//ListeDChainee section2 = obtientUneCoupe(sommeScore);
+			Liste section1 = obtientUneCoupe(sommeScore);
+			Liste section2 = obtientUneCoupe(sommeScore);
 			
 			// assemble et ajoute le nouvel individu
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
+			//cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
+			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2));
 		}
 	
 	}
@@ -106,7 +110,7 @@ public class MoteurCartes {
 	 * @return une section de carte (ListeDChainee)
 	 */
 	private Liste obtientUneCoupe(double sommeScore){
-		private Random rand = new Random();
+		
 
 		int i=0;
 		double nbAlea = rand.nextDouble()*sommeScore;
@@ -123,24 +127,24 @@ public class MoteurCartes {
 			
 			i++;
 		}
-		System.out.println(courante.getNbLiens());
+		System.out.println(courante.getNbLien());
 		
 		// obtient une fraction de l'individu
 		Liste section = courante.obtientFraction(rand.nextBoolean(), 
-				                           rand.nextInt(courante.getNbLiens()));
+				                           rand.nextInt(courante.getNbLien()));
 
 		// applique une mutation si nécessaire
-		if(rand.nextDouble() < config.getPourcentMutation()){
-			int indexLien = rand.nextInt(section.getNbElements());
+		if(rand.nextDouble() < config.getPourcentageMutation()){
+			int indexLien = rand.nextInt(section.getNbrElements());
 			
 			((Lien)section.getElement(indexLien)).mute(popVilles
-					           .getVille(rand.nextInt(popVilles.getNbVille())), 
+					           .getVille(rand.nextInt(popVilles.getNbVilles())), 
 					           rand.nextInt(2));
 		}
 
 		// retire un lien pour favoriser solution courtes
-		if(rand.nextDouble() < config.getPourcentRetrait()){
-			int indexLien = rand.nextInt(section.getNbElements());
+		if(rand.nextDouble() < config.getPourcentageRetrait()){
+			int indexLien = rand.nextInt(section.getNbrElements());
 			section.supprimer(indexLien);
 		}
 		
@@ -208,18 +212,20 @@ public class MoteurCartes {
 		for(int i=0; i < nbCartesBase; i++){
 
 			// crée une nouvelle carte
-			Carte temp = new Carte(moteurDistanceMoyenne, config);
+			//	Carte temp = new Carte(moteurDistanceMoyenne, config);
+			Carte temp = new Carte(moteurDistanceMoyenne);
 
 			// selectionne 2 villes différentes au hasard
-			for(int j=0;j<popVilles.getNbVille()/2;j++){
-				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.getNbVille()));
-				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVille()));
+			for(int j=0;j<popVilles.getNbVilles()/2;j++){
+				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
+				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
 
 				while(villeA == villeB){
-					villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVille()));
+					villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
 				}
 
-				temp.ajouterLien(new Lien(villeA,villeB));
+				//temp.ajouterLien(new Lien(villeA,villeB));
+				temp.ajouterLienFin(new Lien(villeA,villeB));
 			}
 
 			// ajoute la carte à la liste
