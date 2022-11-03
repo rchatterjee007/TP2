@@ -56,9 +56,7 @@ public class Validation {
 			//la ville destination est aléatoire, alors tant que cette ville
 			//n'est pas une ville source ou destination 
 		
-			if() {
-				
-			}
+			
 			Ville Destination=popVilles.getVille(indexRandom);	
 			Lien lien=new Lien(Source,Destination);	
 		}
