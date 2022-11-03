@@ -1,5 +1,6 @@
 package TP2;
 
+import enginCartes.CONFIGURATION;
 import enginCartes.MoteurDistanceMoyenne;
 import listeChaine.Liste;
 
@@ -8,11 +9,20 @@ public class Carte {
 	MoteurDistanceMoyenne moteurDistanceMoyenne = null;
 	double score;
 	Liste liste;
+	CONFIGURATION config;
 	
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
+public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
+	
+	this.moteurDistanceMoyenne = moteurDistanceMoyenne;
+	liste = new Liste();
+	
+}
+	
+public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
 		
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
 		liste = new Liste();
+		this.config = config;
 		
 	}
 	
@@ -25,6 +35,15 @@ public class Carte {
 	}
 	
 	
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, Liste section1, 
+			Liste section2, CONFIGURATION config) {
+		
+		this.moteurDistanceMoyenne = 
+				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
+		liste = section1.fusionnerListe(section2);
+		this.config = config;
+	}
+
 	public int getNbLien() {
 		return liste.getNbrElements();
 	}
@@ -33,8 +52,32 @@ public class Carte {
 		return score;
 	}
 	
+	public double obtenirSommeLongueurs() {
+		double sommeL = 0;
+		for(int i=0; i<liste.getNbrElements(); i++) {
+			Lien lien = (Lien) liste.getElement(i);
+			
+			sommeL += lien.getDistance();
+		}
+		return sommeL;
+	}
+	
+	/*
+	 * evalueScore : Il s’agit de calculer le score obtenu par la 
+	 * multiplication de la distance obtenue du moteurDistanceMoyenne par la 
+	 * pénalité de distance + la somme des longueurs multipliée par la pénalité 
+	 * de longueur + la pénalité déconnecte.
+	 */
 	public void evalueScore(boolean afficher) {
-		this.score = moteurDistanceMoyenne.getDistanceMoyenne(liste, true);
+		double distanceM = moteurDistanceMoyenne.
+				getDistanceMoyenne(liste, true);
+		double penD = config.getPenaliteDistance();
+		double sommeL = obtenirSommeLongueurs();
+		double penL = config.getPenaliteLongeur();
+		double penDeconnecte = config.getPenaliteDeconnect();
+		double nbrDeconnecte = moteurDistanceMoyenne.getNbNonConnecte();
+		this.score = distanceM * penD + sommeL * penL + 
+				nbrDeconnecte * penDeconnecte;
 	}
 
 	public void enleverLien(int indice) {
@@ -54,6 +97,7 @@ public class Carte {
 		}
 		return nouvelleListe;
 	}
+	
 	
 	@Override
 	public String toString() {

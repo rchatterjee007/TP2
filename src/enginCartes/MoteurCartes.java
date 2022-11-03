@@ -91,7 +91,7 @@ public class MoteurCartes {
 			
 			// assemble et ajoute le nouvel individu
 			//cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2));
+			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
 
 		}
 	
