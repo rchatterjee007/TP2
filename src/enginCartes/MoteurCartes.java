@@ -46,13 +46,82 @@ public class MoteurCartes {
 	 * 
 	 * @param popVilles, la population de villes
 	 */
+	/*
+	Constructeur par paramètre. Il garde une copie de la référence à la population 
+	de Villes et de la configuration, il initialise un MoteurDistanceMoyenne et 
+	initialise le vecteur avec config.getNbCartesBases cartes. 
+	Chaque carte doit recevoir un nombre de liens, dont les villes sont choisies 
+	au hasard égales au nombre de villes divisé par 2.
+	*/
 	public MoteurCartes(PopulationVilles popVilles, CONFIGURATION config){
 		
 		this.popVilles=popVilles;
 		this.config=config;
+		this.moteurDistanceMoyenne = new MoteurDistanceMoyenne(popVilles);
+		cartes = new Vector<Carte>(config.getNbCartesBase());
+		
+		Liste listeLien = initLiens(popVilles);
+		int nbrLiensCoupe = listeLien.getNbrElements()/cartes.size();
+		
+		Liste listeLienMoitie = listeLien.copie(0, nbrLiensCoupe);
+		Liste listeLienResteMoitie = listeLien.copie(nbrLiensMoitie, 
+				listeLien.getNbrElements());
+		
+		for(int i=0; i< cartes.size(); i++) {
+			
+			Carte carte = cartes.get(i);
+			int nbrLiens = listeLien.getNbrElements();
+			
+			
+			
+			for(int y=0; y< nbrLiens; y++) {
+				Lien lien = (Lien) listeLien.getElement(y);
+				
+				
+				carte.ajouterLienFin(lien);
+			}
+			
+			for(int y=0; y< nbrLiens; y++) {
+				Lien lien = (Lien) listeLien.getElement(y);
+				
+				carte.ajouterLienFin(lien);
+			}
+			
+		}
 	}
 	
 
+	private Liste initLiens(PopulationVilles popVilles) {
+		int alea = nbrAlea(0, popVilles.getNbVilles());
+		Liste liens = new Liste();
+		
+		for(int i=0; i<popVilles.getNbVilles(); i++) {
+			Lien lien = new Lien();
+			
+			Boolean estMuteSource = lien.mute(popVilles.getVille(i), 0);
+			while(!estMuteSource) {
+				estMuteSource = lien.mute(popVilles.getVille(i), 0);
+			}
+			
+			Boolean estMuteDistance = lien.mute(popVilles.getVille(alea), 1);
+			while(!estMuteDistance) {
+				estMuteDistance = lien.mute(popVilles.getVille(alea), 1);
+			}
+			
+			
+			liens.insererALaPosition(liens, i);
+		}
+		
+		return liens;
+	}
+
+    
+    /*
+     * retourne un chiffre aleatoire entre min et max
+     */
+    private int nbrAlea(int min, int max){
+		return (int) Math.round(Math.random()* (max - min) + min);
+	}	
 	/**
 	 * reduit la population de carte en ne gardant que les CONFIGURATION.NB_CARTES_BASES
 	 * ayant le plus bas score (minimization). Cette méthode opère sur les champs de la classe
