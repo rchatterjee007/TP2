@@ -10,16 +10,18 @@ public class Carte {
 	double score;
 	Liste liste;
 	CONFIGURATION config;
-	
+
+	/*
 public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
 	
 	this.moteurDistanceMoyenne = moteurDistanceMoyenne;
+	score = 0.0;
 	liste = new Liste();
 	
 }
-	
+	*/
 public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
-		
+		score = 0.0;
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
 		liste = new Liste();
 		this.config = config;
@@ -32,6 +34,7 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 		this.moteurDistanceMoyenne = 
 				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
 		liste = section1.fusionnerListe(section2);
+		score = 0.0;
 	}
 	
 	
@@ -41,6 +44,7 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 		this.moteurDistanceMoyenne = 
 				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
 		liste = section1.fusionnerListe(section2);
+		score = 0.0;
 		this.config = config;
 	}
 
@@ -70,7 +74,7 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 	 */
 	public void evalueScore(boolean afficher) {
 		double distanceM = moteurDistanceMoyenne.
-				getDistanceMoyenne(liste, true);
+				getDistanceMoyenne(liste, afficher);
 		double penD = config.getPenaliteDistance();
 		double sommeL = obtenirSommeLongueurs();
 		double penL = config.getPenaliteLongeur();
@@ -87,8 +91,13 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 	public void ajouterLienFin(Lien ceLien) {
 		liste.insererALaPosition(ceLien, getNbLien());
 	}
+	
 	public Liste obtientFraction(boolean duDebut, int indexCoupe) {
-		
+		/*
+		if(indexCoupe == 0 && duDebut == true) {
+			indexCoupe++;
+		}
+		*/
 		Liste nouvelleListe;
 		if(duDebut == true) {
 			nouvelleListe = liste.copie(0, indexCoupe);

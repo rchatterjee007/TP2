@@ -37,6 +37,10 @@ public class TestListe {
 		l.supprimer(19);
 		
 		System.out.println(l.toString());
+		
+		l.supprimer(6);
+		
+		System.out.println(l.toString());
 	}
 
 }

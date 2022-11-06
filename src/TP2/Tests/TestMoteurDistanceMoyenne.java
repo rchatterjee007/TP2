@@ -52,7 +52,7 @@ public class TestMoteurDistanceMoyenne {
 		
 		}
 		
-		Carte carte = new Carte(mtdm, section1, section2);
+		Carte carte = new Carte(mtdm, section1, section2, conf);
 		
 		carte.evalueScore(true);
 	}

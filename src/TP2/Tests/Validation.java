@@ -14,7 +14,7 @@ public class Validation {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		/*
 		CONFIGURATION config= new CONFIGURATION();
 		
 		//1.	Créer une population de Villes
@@ -26,9 +26,10 @@ public class Validation {
 		
 		//3.    Faire un appel à l’évaluation des scores
 		enginCartes.evalueLesScores();
+		//System.out.println("Score : " +enginScore);
 		
 		//4.    Afficher l’engin de cartes
-		enginCartes.toString();
+		System.out.println(enginCartes.toString());
 		
 		//5.	Faire un appel à l’élargissement de la population
 		enginCartes.elargieLaPopulation();
@@ -37,13 +38,57 @@ public class Validation {
 		enginCartes.evalueLesScores();
 		
 		//7.    Afficher l’engin de cartes
-		enginCartes.toString();
+		System.out.println(enginCartes.toString());
 		
 		//8.	Faire un appel à réduire la population
 		enginCartes.reduitLaPopulation();
 		
 		//9.    Afficher l’engin de cartes
 		enginCartes.toString();
+		
+		System.out.println(enginCartes.toString());
+		System.out.println("test");
+		*/
+		
+		
+		
+		
+		
+		
+		
+		 // Crée une population de villes.
+    	CONFIGURATION config= new CONFIGURATION();
+    	PopulationVilles popVilles =
+    			new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
+
+        // Crée une population de cartes.
+        MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
+
+
+        System.out.println(popVilles);
+
+        // Évalue les scores une première fois.
+    	enginCartes.evalueLesScores(false);
+		
+		
+    	// Affiche l'itération courante.
+    	System.out.println("" + 1);
+
+    	// Itération d'optimisation: élargit, évalue et réduit.
+    	enginCartes.elargieLaPopulation();
+    	enginCartes.evalueLesScores(false);
+    	enginCartes.reduitLaPopulation();
+
+    	// Affiche le meilleur score courant.
+    	enginCartes.afficheMeilleurScore();
+		
+		
+    	// Affiche la population des villes.
+        System.out.println(popVilles);
+
+        // Affiche la meilleur solution.
+        enginCartes.getMeilleurSolution();
+		
 	}
 	
 	private static void lierLesVilles(PopulationVilles popVilles) {
