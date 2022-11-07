@@ -3,16 +3,17 @@ package TP2.Tests;
 import TP2.Point2D;
 import TP2.Ville;
 
+/**
+ * Classe qui valide les données de la class Ville
+ * @author Radhika Chatterjee Simon Pitre-Lamas
+ *
+ */
 public class TestVille {
 
 	public TestVille() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-
 		//TEST CONSTRUCTEUR VIDE 
 		Ville v1= new Ville();
 		System.out.println("Test Constructeur Vide du ville: ---->   "

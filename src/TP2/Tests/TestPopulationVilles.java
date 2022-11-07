@@ -4,6 +4,11 @@ package TP2.Tests;
 import enginCartes.CONFIGURATION;
 import problemeVilles.PopulationVilles;
 
+/**
+ * Classe qui valide les données de la class PopulationVilles
+ * @author Radhika Chatterjee Simon Pitre-Lamas
+ *
+ */
 public class TestPopulationVilles {
 
 	public static void main(String[] args) {

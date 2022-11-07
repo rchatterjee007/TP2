@@ -4,13 +4,14 @@ import TP2.Constantes;
 
 /**
  * La class qui retournes les valeurs des Constantes
- * 
- * @author Radhika Chatterjee
- * @author radhikachatterjee Simon Pitre-Lamas
+ * @author Radhika Chatterjee Simon Pitre-Lamas
  * @version copyright A2022
  */
-public class CONFIGURATION {
+public final class CONFIGURATION {
 
+	/*
+	 * Attributs represantant les constantes 
+	 * */
 	private double pourcentageMutation;
 	private double pourcentageRetrait;
 
@@ -28,9 +29,12 @@ public class CONFIGURATION {
 	private int nbCartesMax;
 
 
-
+	/**
+	 * Constructeur par défaut qui initialise chaque attribut avec sa 
+	 * valeur correspondant de la class Constantes
+	 * 
+	 * */
 	public CONFIGURATION() {
-		// TODO Auto-generated constructor stub
 		this.pourcentageMutation=Constantes.POURCENTAGE_MUTATION;
 		this.pourcentageRetrait=Constantes.POURCENTAGE_RETRAIT;
 		this.maxX=Constantes.MAX_X;
@@ -44,66 +48,89 @@ public class CONFIGURATION {
 		this.nbCartesMax=Constantes.NB_CARTES_MAX;
 	}
 
+	/**
+	 * Accesseur de l'attribut pourcentageMutation
+	 * */
 	public double getPourcentageMutation() {
 		return pourcentageMutation;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut pourcentageRetrait
+	 * */
 	public double getPourcentageRetrait() {
 		return pourcentageRetrait;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut maxX
+	 * */
 	public double getMaxX() {
 		return maxX;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut maxY
+	 * */
 	public double getMaxY() {
 		return maxY;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut penaliteLongueur
+	 * */
 	public double getPenaliteLongeur() {
 		return penaliteLongueur;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut penaliteDistance
+	 * */
 	public double getPenaliteDistance() {
 		return penaliteDistance;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut penaliteDeconnect
+	 * */
 	public int getPenaliteDeconnect() {
 		return penaliteDeconnect;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut nbVilles
+	 * */
 	public int getNbVilles() {
 		return nbVilles;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut nbIterations
+	 * */
 	public int getNbIterations() {
 		return nbIterations;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut nbCartesBase
+	 * */
 	public int getNbCartesBase() {
 		return nbCartesBase;
 	}
 
 
-
+	/**
+	 * Accesseur de l'attribut nbCartesMax
+	 * */
 	public int getNbCartesMax() {
 		return nbCartesMax;
 	}
