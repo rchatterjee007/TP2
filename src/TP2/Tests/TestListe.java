@@ -4,6 +4,11 @@ import TP2.Lien;
 import TP2.Ville;
 import listeChaine.Liste;
 
+/**
+ * Classe qui valide les données de la class Liste
+ * @author Radhika Chatterjee Simon Pitre-Lamas
+ *
+ */
 public class TestListe {
 	
 	public static void main(String[] args) {
@@ -18,7 +23,7 @@ public class TestListe {
 			vd = new Ville();
 			
 			Lien lien = new Lien(v, vd);
-			
+			//test Insertion À la position
 			l.insererALaPosition(lien, i);
 		}
 		
@@ -26,14 +31,17 @@ public class TestListe {
 		vd = new Ville();
 		Lien lien = new Lien(v, vd);
 		
+		//test Insertion À la position
 		l.insererALaPosition(lien, 4);
 		
 		System.out.println(l.toString());
 		
+		//TEST SUPPRIMER
 		l.supprimer(1);
 		
 		System.out.println(l.toString());
 		
+		//TEST SUPPRIMER
 		l.supprimer(19);
 		
 		System.out.println(l.toString());

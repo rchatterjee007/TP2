@@ -3,10 +3,12 @@
  */
 package TP2.Tests;
 
+import TP2.Constantes;
 import enginCartes.CONFIGURATION;
 
 /**
- * @author radhikachatterjee
+ * Classe qui valide les données de la class CONFIGURATION
+ * @author Radhika Chatterjee Simon Pitre-Lamas
  *
  */
 public class TestConfiguration {
@@ -24,40 +26,57 @@ public class TestConfiguration {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		CONFIGURATION conf= new CONFIGURATION();
-		
+
 		// TEST getPourcentageMutation
-		System.out.println(conf.getPourcentageMutation());
-		
+		comparer(conf.getPourcentageMutation(),Constantes.POURCENTAGE_MUTATION);
+
 		// TEST getPourcentageRetrait
-		System.out.println(conf.getPourcentageRetrait());
-				
+		comparer(conf.getPourcentageRetrait(),Constantes.POURCENTAGE_RETRAIT);
+
 		// TEST getMaxX
-		System.out.println(conf.getMaxX());
-				
+		comparer(conf.getMaxX(),Constantes.MAX_X);
+
 		// TEST getMaxY
-		System.out.println(conf.getMaxY());
-				
+		comparer(conf.getMaxY(),Constantes.MAX_Y);
+
 		// TEST getPenaliteLongeur
-		System.out.println(conf.getPenaliteLongeur());
-				
+		comparer(conf.getPenaliteLongeur(),Constantes.PENALITE_LONGUEUR);
+
 		// TEST getPenaliteDistance
-		System.out.println(conf.getPenaliteDistance());
-				
+		comparer(conf.getPenaliteDistance(),Constantes.PENALITE_DISTANCE);
+
 		// TEST getPenaliteDeconnect
-		System.out.println(conf.getPenaliteDeconnect());
-				
+		comparer(conf.getPenaliteDeconnect(),Constantes.PENALITE_DECONNECTE);
+
 		// TEST getNbVilles
-		System.out.println(conf.getNbVilles());
-				
+		comparer(conf.getNbVilles(),Constantes.NB_VILLES);
+
 		// TEST getNbIterations
-		System.out.println(conf.getNbIterations());
-		
+		comparer(conf.getNbIterations(),Constantes.NB_ITERATIONS);
+
 		// TEST getNbCartesBase
-		System.out.println(conf.getNbCartesBase());
-				
+		comparer(conf.getNbCartesBase(),Constantes.NB_CARTES_BASE);
+
 		// TEST getNbCartesMax
-		System.out.println(conf.getNbCartesMax());
-		
+		comparer(conf.getNbCartesMax(),Constantes.NB_CARTES_MAX);
+
+	}
+
+
+	/**
+	 * 
+	 * @param objet1 valeur de l'attribut de la classe CONFIGURATION
+	 * @param objet2 valeur de l'attribut de la classe Constantes
+	 * 
+	 * Compare les deux valeurs et print un message si les deux sont pareils ou non
+	 */
+	private static void comparer(Object objet1, Object objet2) {
+		if(objet1==objet2) {
+			System.out.println("ILS SONT PAREILS!");
+		}
+		else {
+			System.out.println("ILS SONT PAREILS!");
+		}
 	}
 
 }

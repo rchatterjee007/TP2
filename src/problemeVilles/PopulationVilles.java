@@ -5,13 +5,14 @@ import TP2.Ville;
 import enginCartes.CONFIGURATION;
 
 /**
- * La population de villes est la classe qui contient toutes les villes de la région. 
- * @author radhikachatterjee
+ * La population de villes est la classe qui contient 
+ * toutes les villes de la région. 
+ * @author Radhika Chatterjee Simon Pitre-Lamas
  * */
 
 public class PopulationVilles {
 
-	private Ville[] lesVilles;
+	private Ville[] lesVilles;// tableau contenant les villes de la région
 
 	/***
 	 * Constructeur par copie d’attributs (ou par paramètres). 
@@ -33,6 +34,13 @@ public class PopulationVilles {
 		}
 	}
 
+	/***
+	 * Constructeur par copie d'attributs 
+	 * 
+	 * @param nbrVilles nbrville dans la région
+	 * @param x valeur max du X
+	 * @param y valeur max du y
+	 */
 	public PopulationVilles(int nbrVilles, double x, double y) {
 		this.lesVilles= new Ville[nbrVilles];
 		for(int i=0;i<lesVilles.length;i++) {	
@@ -40,34 +48,54 @@ public class PopulationVilles {
 		}
 	}
 
+	/***
+	 * @param config du region
+	 * @return un point2D avec coordonne au hazard
+	 */
 	public Point2D getPointsVille(CONFIGURATION config) {
 		double x= nbrAlea(0.0,config.getMaxX());
 		double y= nbrAlea(0.0,config.getMaxY());
 		Point2D point= new Point2D(x,y);
 		return point;
 	}
+
+	/***
+	 * @param x valeur max de X
+	 * @param y valeur max de Y
+	 * @return un point2D avec coordonne au hazard avec un min-max 
+	 */
 	private Point2D getPointsVilleAvecCoordoneeMinMax(double x, double y) {
 		double px= nbrAlea(0.0,x);
 		double py= nbrAlea(0.0,y);
 		Point2D point= new Point2D(px,py);
 		return point;
 	}
-	
 
 
+
+	//Fonction qui retourne nombre aléatoire entre min-max incluses
 	private double nbrAlea(double min, double max){
 		return (double) Math.round(Math.random()* (max - min) + min);
 	}	
 
+	/***
+	 * Retourne la ville à l’index. 
+	 * @param numero de la ville
+	 * @return ville trouvé ou null si pas trouvé
+	 */
 	public Ville getVille(int numero) {
 		Ville v=null;
-		
+
 		if(numero!=lesVilles.length) {
 			v=lesVilles[numero];
 		}
 		return v;
 	} 
 
+	/***
+	 * Informatrice sur le nombre de villes définies.
+	 * @return nombre de ville dans la région
+	 */
 	public int getNbVilles() {
 
 		int nbrVilles=0;
@@ -81,6 +109,11 @@ public class PopulationVilles {
 	}
 
 
+	/***
+	 * Cette méthode construit et retourne une chaîne de caractères qui
+	 *  représente toutes les villes de la population,
+	 *   à raison d’une ville par ligne.
+	 */
 	@Override
 	public String toString() {
 		String message="";
@@ -92,8 +125,4 @@ public class PopulationVilles {
 		}	
 		return message;
 	}
-
-
-
-
 }

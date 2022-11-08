@@ -10,7 +10,7 @@ import problemeVilles.PopulationVilles;
 
 /**
  * Cette classe implémente le moteur de calcul de distance moyenne entre 2 villes. 
-*  Elle est un singleton dont la référence est partagée par toutes les cartes.
+ *  Elle est un singleton dont la référence est partagée par toutes les cartes.
  *
  * L'algorithme utilisé consiste à construire, pour chaque ville, un arbre à
  * descendant vers toutes les autres villes en suivant les liens. Les noeuds 
@@ -293,32 +293,50 @@ public class MoteurDistanceMoyenne {
 	}
 	
 	/*
-	 * Ajouter - Simon
+	 * Noeud pour un suivre les distances
 	 */
 	private class Noeud {
 		private double distanceTete;
 		private int niveau;
 		private Ville villeSource;
 		
+		/***
+		 * Constructeur par copie de parametres
+		 * @param distanceTete Distance 
+		 * @param niveau Niveau de la ville
+		 * @param villeSource Ville source
+		 */
 		public Noeud(double distanceTete, int niveau, Ville villeSource) {
 			this.distanceTete = distanceTete;
 			this.niveau = niveau;
 			this.villeSource = villeSource;
 		}
 		
+		/***
+		 * Acceseur de la distance
+		 * @return  la distance 
+		 */
 		public double getDistanceTete() {
 			return distanceTete;
 		}
+		/***
+		 * Acesseur de la ville source
+		 * @return 
+		 */
 		public Ville getSource() {
-			// TODO Auto-generated method stub
 			return villeSource;
 		}
 
+		/***
+		 * Acesseur du niveau 
+		 * @return niveau de la ville
+		 */
 		public int getNiveau() {
-			// TODO Auto-generated method stub
 			return niveau;
 		}
-		
+		/***
+		 * Affiche le neoud en chaîne de caractères
+		 */
 		@Override
 		public String toString() {
 			return "Ville(Noeud) : Niv " + niveau + " DistTete " +distanceTete +

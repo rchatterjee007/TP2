@@ -6,6 +6,11 @@ import TP2.Point2D;
 import TP2.Ville;
 import problemeVilles.PopulationVilles;
 
+/**
+ * Classe qui valide les données de la class Lien
+ * @author Radhika Chatterjee Simon Pitre-Lamas
+ *
+ */
 public class TestLien {
 
 	public TestLien() {

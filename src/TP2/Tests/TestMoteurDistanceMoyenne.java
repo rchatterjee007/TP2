@@ -6,7 +6,11 @@ import enginCartes.CONFIGURATION;
 import enginCartes.MoteurDistanceMoyenne;
 import listeChaine.Liste;
 import problemeVilles.PopulationVilles;
-
+/**
+ * Classe qui valide les données de la class MoteurDistanceMoyenne
+ * @author Radhika Chatterjee Simon Pitre-Lamas
+ *
+ */
 public class TestMoteurDistanceMoyenne {
 
 	public static void main(String[] args) {
@@ -18,6 +22,7 @@ public class TestMoteurDistanceMoyenne {
 		Liste section1 = new Liste();
 		Liste section2 = new Liste();
 		
+		//inserer des liens dans la liste
 		for(int i=0; i<2; i++) {
 			
 			
@@ -29,6 +34,7 @@ public class TestMoteurDistanceMoyenne {
 			
 			Lien lien = new Lien(villeSource, villeDest);
 			section1.insererALaPosition(lien, i);
+			
 		}
 		
 		for(int i=2; i<4; i++) {
