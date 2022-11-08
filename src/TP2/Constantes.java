@@ -22,7 +22,7 @@ public class Constantes {
 	
 	//8
 	public static final int NB_VILLES = 8;
-	public static final int NB_ITERATIONS = 100;
+	public static final int NB_ITERATIONS = 26;
 	//20
 	//4
 	public static final int NB_CARTES_BASE = 2;

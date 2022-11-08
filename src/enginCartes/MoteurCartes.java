@@ -79,7 +79,7 @@ public class MoteurCartes {
 		Vector<Carte> meilleurCartes = new Vector<Carte>();
 		meilleurCartes.add(cartes.get(0));
 		
-		for(int i=0; i<cartes.size(); i++) {
+		for(int i=1; i<cartes.size(); i++) {
 			
 			Carte carte = cartes.get(i);
 			
@@ -91,7 +91,7 @@ public class MoteurCartes {
 			}
 			
 		}
-		
+		System.out.println("Nbr carte apres placer : " + meilleurCartes.size());
 		
 		cartes = meilleurCartes;
 	}
@@ -192,15 +192,22 @@ public class MoteurCartes {
 
 			courante = cartes.get(i);
 			accumulationScore += courante.getScore();
-
+  
 			i++;
 		}
-		System.out.println(courante.getNbLien());
+		
+		System.out.println("Nbr de cartes: " + cartes.size());
+		System.out.println("Nbr liens : " + courante.getNbLien());
+		
+		
 		Liste section = new Liste();
 		
 		
 		Boolean bool = rand.nextBoolean();
-		int randInt = rand.nextInt(courante.getNbLien());
+	
+		
+		int nbrLiens = courante.getNbLien();
+		int randInt = rand.nextInt();
 		// obtient une fraction de l'individu
 		section = courante.obtientFraction(bool, randInt);
 		
@@ -213,11 +220,14 @@ public class MoteurCartes {
 		}
 		
 		// retire un lien pour favoriser solution courtes
-		if (rand.nextDouble() < config.getPourcentageRetrait()) {
+		double dalea = rand.nextDouble();
+		System.out.println("NextDouble alea : " + dalea);
+		if (dalea < config.getPourcentageRetrait()) {
 			int indexLien = rand.nextInt(section.getNbrElements());
 			section.supprimer(indexLien);
 		}
-
+		
+		
 		return section;
 		
 	}

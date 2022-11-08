@@ -187,11 +187,19 @@ public class Liste {
 		
 		Liste nouvelleListe = new Liste();
 		Object element;
-		
-		for(int i=debut; i<fin; i++) {
-			element = this.getElement(i);
+		if(debut == fin) {
+			element = this.getElement(debut);
 			
-			nouvelleListe.insererALaPosition(element, i);
+			nouvelleListe.insererALaPosition(element, debut);
+		
+		}
+		else {
+			for(int i=debut; i<fin; i++) {
+				element = this.getElement(i);
+				
+				nouvelleListe.insererALaPosition(element, i);
+			}
+		
 		}
 		return nouvelleListe;
 	}
