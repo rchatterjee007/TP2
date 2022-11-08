@@ -21,22 +21,13 @@ public class Carte {
 	 * @param moteurDistanceMoyenne distance moyenne 
 	 */
 	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
+		this.score = 0.0;
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
-		liste = new Liste();
+		this.liste = new Liste();
+		this.config = new CONFIGURATION();
 	}
 
-	/*** 
-	 * Le constructeur initialise la liste vide, 
-	 * la config et le moteurDistanceMoyenne 
-	 */
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, 
-			CONFIGURATION config) {
 
-		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
-		liste = new Liste();
-		this.config = config;
-
-	}
 
 	/***
 	 * Constructeur par paramètres. 
@@ -52,6 +43,7 @@ public class Carte {
 		this.moteurDistanceMoyenne = 
 				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
 		liste = section1.fusionnerListe(section2);
+		score = 0.0;
 	}
 
 	/***
@@ -69,8 +61,17 @@ public class Carte {
 		this.moteurDistanceMoyenne = 
 				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
 		liste = section1.fusionnerListe(section2);
+		score = 0.0;
 		this.config = config;
 	}
+	
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
+		this(moteurDistanceMoyenne);
+		this.config = config;
+		
+	}
+
+
 
 	/***
 	 * @return le nombre de liens de la carte.
@@ -108,7 +109,7 @@ public class Carte {
 	 */
 	public void evalueScore(boolean afficher) {
 		double distanceM = moteurDistanceMoyenne.
-				getDistanceMoyenne(liste, true);
+				getDistanceMoyenne(liste, afficher);
 		double penD = config.getPenaliteDistance();
 		double sommeL = obtenirSommeLongueurs();
 		double penL = config.getPenaliteLongeur();
@@ -170,11 +171,5 @@ public class Carte {
 		return message;
 
 	}
-
-
-
-
-
-
 
 }

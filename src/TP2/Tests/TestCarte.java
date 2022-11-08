@@ -64,11 +64,12 @@ public class TestCarte {
 
 
 
+
+
 		//Test avec constructeur moteurDistanceMoyenne 
 		Carte c= new Carte(mtdm);
 		System.out.println(c.toString());
-
-
+		
 		//Valider que ces sections peuvent être utilisées avec le constructeur
 		//par paramètres pour reconstruire une autre carte.
 		Carte carte = new Carte(mtdm, section1, section2,conf);

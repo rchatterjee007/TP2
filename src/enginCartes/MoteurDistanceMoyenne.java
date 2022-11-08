@@ -91,8 +91,8 @@ public class MoteurDistanceMoyenne {
 		// pour chaque ville...
 		for(int i=0;i<popVilles.getNbVilles();i++){
 
+			
 			ArrayList<Noeud> arbre = construireArbre(listeLiens, i, afficher);
-
 			// Remplit la ligne de la matrice de distances.
 			for(int j=0;j<arbre.size();j++){
 				
@@ -125,6 +125,11 @@ public class MoteurDistanceMoyenne {
 		return nbDeconnecte;
 	}
 
+	
+	
+	
+	
+	
 	/**
 	 * Construit l'arbre pour la ville i
 	 *
@@ -135,10 +140,12 @@ public class MoteurDistanceMoyenne {
 	private ArrayList<Noeud> construireArbre(Liste listeLiens, 
 			                                  int indice,
 			                                  boolean afficher){
-
+		
 		// Mettre vos deux liste ici (arbre et liste de sources).
 		ArrayList<Ville> listeSources = new ArrayList<Ville>();
 		ArrayList<Noeud> arbre = new ArrayList<Noeud>();
+		
+		
 		
         // Compléter icidouble distanceTete, int niveau, Ville villeSource
 		
@@ -192,11 +199,13 @@ public class MoteurDistanceMoyenne {
 			//On regarde si la ville reçue du noeud fait partie du lien
 			if(lien.estMembre(villeSource)) {
 				
+				
 				//On récupère la ville destination du lien
 				Ville villeDest = lien.getDest(villeSource);
 				
 				//On regarde si la liste des villes sources contient la ville
 				//destination
+				
 				if(!listeSource.contains(villeDest)) {
 					
 					int niveau = noeud.getNiveau();
@@ -207,7 +216,7 @@ public class MoteurDistanceMoyenne {
 							villeDest);
 					arbre.add(noeudAvecVilleDest);
 					listeSource.add(villeDest);
-				}
+				}	
 			}
 			listeLiens.deplacerPc(i);
 		}
