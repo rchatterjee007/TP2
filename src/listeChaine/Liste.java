@@ -146,7 +146,7 @@ public class Liste {
 	public void supprimer(int position) {
 
 		//Supprimer au début
-		if(position == 0 || nbElements == 1) {
+		if(position == 0) {
 			supprimerDebut();
 		}
 		//Supprimer à la fin
@@ -191,6 +191,8 @@ public class Liste {
 	 * @param position à laquelle il faut supprimer l'élément (N/A)
 	 */
 	private void supprimerDebut() {
+		
+		
 		debut = debut.suivant;
 		if(debut == null) {
 			fin = null;
