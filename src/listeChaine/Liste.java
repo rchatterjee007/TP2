@@ -263,28 +263,6 @@ public class Liste {
 	}
 	
 	/***
-	 * Retourne une liste d'éléments coupé en sous-morceaux
-	 * @param morceaux nbr de morceau à diviser la liste 
-	 * @return une liste séparé en pieces
-	 */
-	public Object[] couperListeEnMorcaux(int morceaux) {
-		
-		Liste liste = new Liste();
-		Object[] liste2D = new Object[morceaux];
-		
-		int fin = getNbrElements()/morceaux;
-		int debut = 0;
-		for(int i = 0; i<morceaux; i++) {
-			
-			liste2D[i] = copie(debut, fin);
-			debut += iterateur;
-			iterateur += getNbrElements()- iterateur;
-			
-		}
-		return liste2D;
-	}
-	
-	/***
 	 * Retourne la liste sous forme de caractères 
 	 */
 	@Override
