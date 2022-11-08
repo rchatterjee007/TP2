@@ -20,24 +20,14 @@ public class Carte {
 	 * Le constructeur initialise aussi la liste vide.
 	 * @param moteurDistanceMoyenne distance moyenne 
 	 */
-public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
-		score = 0.0;
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne) {
+		this.score = 0.0;
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
-		liste = new Liste();
+		this.liste = new Liste();
+		this.config = new CONFIGURATION();
 	}
 
-	/*** 
-	 * Le constructeur initialise la liste vide, 
-	 * la config et le moteurDistanceMoyenne 
-	 */
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, 
-			CONFIGURATION config) {
 
-		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
-		liste = new Liste();
-		this.config = config;
-
-	}
 
 	/***
 	 * Constructeur par paramètres. 
@@ -74,6 +64,14 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 		score = 0.0;
 		this.config = config;
 	}
+	
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
+		this(moteurDistanceMoyenne);
+		this.config = config;
+		
+	}
+
+
 
 	/***
 	 * @return le nombre de liens de la carte.
@@ -173,11 +171,5 @@ public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) 
 		return message;
 
 	}
-
-
-
-
-
-
 
 }

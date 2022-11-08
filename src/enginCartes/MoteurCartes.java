@@ -207,7 +207,7 @@ public class MoteurCartes {
 	
 		
 		int nbrLiens = courante.getNbLien();
-		int randInt = rand.nextInt();
+		int randInt = rand.nextInt(nbrLiens);
 		// obtient une fraction de l'individu
 		section = courante.obtientFraction(bool, randInt);
 		
