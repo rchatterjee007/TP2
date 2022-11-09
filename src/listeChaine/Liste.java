@@ -269,9 +269,25 @@ public class Liste {
 		}
 		return nouvelleListe;
 	}
-	/***
-	 * Retourne la liste sous forme de caractères 
-	 */
+	
+	public Object[] couperListeEnMorcaux(int morcaux) {
+		
+		Liste liste = new Liste();
+		Object[] liste2D = new Object[morcaux];
+		
+		int fin = getNbrElements()/morcaux;
+		int debut = 0;
+		for(int i = 0; i<morcaux; i++) {
+			
+			liste2D[i] = copie(debut, fin);
+			debut += iterateur;
+			iterateur += getNbrElements()- iterateur;
+			
+		}
+		return liste2D;
+	}
+	
+	
 	@Override
 	public String toString() {
 		String message = "";

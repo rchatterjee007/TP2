@@ -1,19 +1,23 @@
 package enginCartes;
 
 /**
- * Cette classe Implemente le moteur de gestions de la population de cartes candidates
+ * Cette classe Implemente le moteur de gestions de la population de cartes 
+ * candidates
 
  * 
  * Liste des méthodes publiques: 
  *     - MoteurCartes, constructeur par paramètre
- *     - reduitLaPopulation, opération qui réduit la population à NB_CARTES_BASES
- *     - elargieLaPopulation, opération qui elargie la population à NB_CARTES_MAX
+ *     - reduitLaPopulation, opération qui réduit la population à 
+ *     NB_CARTES_BASES
+ *     - elargieLaPopulation, opération qui elargie la population à 
+ *     NB_CARTES_MAX
  *     - evalueLesScores, calcul les scores des cartes
  *     - afficheMeilleurSolution, affiche la meilleur solution
  *     - afficheMeilleurScore, affiche le meilleur score
  *     - toString, représentation de l'objet en chaine de caractères
  *     
- * Cette classe utilise votre liste chaînée, il se peut que vous devient ajuster 
+ * Cette classe utilise votre liste chaînée, 
+ * il se peut que vous devient ajuster 
  * la signature des méthodes selon votre classe.
  *
  * @author Fred Simard | ETS, 
@@ -48,8 +52,10 @@ public class MoteurCartes {
 	/*
 	 * Constructeur par paramètre. Il garde une copie de la référence à la
 	 * population de Villes et de la configuration, il initialise un
-	 * MoteurDistanceMoyenne et initialise le vecteur avec config.getNbCartesBases
-	 * cartes. Chaque carte doit recevoir un nombre de liens, dont les villes sont
+	 * MoteurDistanceMoyenne et initialise le vecteur avec 
+	 * config.getNbCartesBases
+	 * cartes. Chaque carte doit recevoir un nombre de liens, 
+	 * dont les villes sont
 	 * choisies au hasard égales au nombre de villes divisé par 2.
 	 */
 	public MoteurCartes(PopulationVilles popVilles, CONFIGURATION config) {
@@ -63,17 +69,12 @@ public class MoteurCartes {
 	}
 
 
-	/*
-	 * retourne un chiffre aleatoire entre min et max
-	 */
-	private int nbrAlea(int min, int max) {
-		return (int) Math.round(Math.random() * (max - min) + min);
-	}
+
 
 	/**
 	 * reduit la population de carte en ne gardant que les
-	 * CONFIGURATION.NB_CARTES_BASES ayant le plus bas score (minimization). Cette
-	 * méthode opère sur les champs de la classe
+	 * CONFIGURATION.NB_CARTES_BASES ayant le plus bas score (minimization). 
+	 * Cette méthode opère sur les champs de la classe
 	 */
 	public void reduitLaPopulation() {
 
@@ -131,14 +132,14 @@ public class MoteurCartes {
 
 
 	/**
-	 * elargie la population de carte en générant de nouvelles cartes qui sont des
-	 * mix de cartes existantes. Cette méthode opère sur les champs de la classe.
+	 * elargie la population de carte en générant de nouvelles cartes qui 
+	 * sont des mix de cartes existantes. Cette méthode opère 
+	 * sur les champs de la classe.
 	 */
 	public void elargieLaPopulation() {
 
-		// elargie la population en générant de nouveaux individus, qui combinent les
-		// gênes
-		// des parents.
+		// elargie la population en générant de nouveaux individus, 
+		//qui combinent les gênes des parents.
 
 		// calcul la somme des scores de tous les parents
 		double sommeScore = 0.0;
@@ -158,19 +159,20 @@ public class MoteurCartes {
 			Liste section2 = obtientUneCoupe(sommeScore);
 			
 			// assemble et ajoute le nouvel individu
-			// cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
+			cartes.add(new Carte(moteurDistanceMoyenne, section1, 
+					section2, config));
 
 		}
 
 	}
 
 	/**
-	 * Obtient une section de carte selectionné au hasard parmis la liste de cartes
-	 * en proportion de leur score.
+	 * Obtient une section de carte selectionné au hasard parmis la 
+	 * liste de cartes en proportion de leur score.
 	 * 
-	 * NOTE: la technique employé est de donner plus de poids aux cartes de bases
-	 * ayant les plus mauvais score. Cette approche augmente le mélange des éléments
+	 * NOTE: la technique employé est de donner plus de poids 
+	 * aux cartes de bases ayant les plus mauvais score. 
+	 * Cette approche augmente le mélange des éléments
 	 * et aide à sortir des minimum locaux
 	 * 
 	 * NOTE: la technique tend également à favoriser les solutions courtes en
