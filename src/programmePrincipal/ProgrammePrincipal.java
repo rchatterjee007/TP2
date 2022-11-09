@@ -40,7 +40,7 @@ public class ProgrammePrincipal{
         System.out.println(popVilles);
 
         // Évalue les scores une première fois.
-    	enginCartes.evalueLesScores(false);
+    	enginCartes.evalueLesScores(true);
 
         // Maintenant, on procède à la boucle d'optimisation pour 
     	// trouver la solution.
@@ -60,11 +60,12 @@ public class ProgrammePrincipal{
         }
 
         // Affiche la population des villes.
-        System.out.println(popVilles);
-        enginCartes.evalueLesScores(false);
-        // Affiche la meilleur solution.
-        enginCartes.getMeilleurSolution();
+        //System.out.println(popVilles);
+       
         
+        // Affiche la meilleur solution.
+        //System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
+        enginCartes.evalueLesScores(true);
         
     }
 

@@ -65,6 +65,7 @@ public class MoteurCartes {
 		this.moteurDistanceMoyenne = new MoteurDistanceMoyenne(popVilles);
 		cartes = new Vector<Carte>(config.getNbCartesBase());
 		setPopulation(popVilles);
+		System.out.println("ZZZZ : "+cartes.get(0).getNbLien());
 	}
 
 
@@ -93,7 +94,7 @@ public class MoteurCartes {
 			
 		}
 		System.out.println("Nbr carte apres placer : " + meilleurCartes.size());
-		
+		System.out.println("TTTT : "+meilleurCartes.get(0).getNbLien());
 		cartes = meilleurCartes;
 	}
 
@@ -117,7 +118,7 @@ public class MoteurCartes {
 			while(trouverPositon) {
 				double scoreCarteMilieu = meilleurCartes.get(pos).getScore();
 				
-				if(scoreCarte > scoreCarteMilieu) {
+				if(scoreCarte >= scoreCarteMilieu) {
 					meilleurCartes.add(pos, carte);
 					trouverPositon = true;
 				} else {
@@ -156,10 +157,15 @@ public class MoteurCartes {
 			// selectionne 2 coupes de parents aléatoirement
 			Liste section1 = obtientUneCoupe(sommeScore);
 			Liste section2 = obtientUneCoupe(sommeScore);
-
+			
 			// assemble et ajoute le nouvel individu
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, 
-					section2, config));
+			
+			Carte carte = new Carte(moteurDistanceMoyenne, section1, 
+					section2, config);
+			
+			if(carte.getNbLien() != 0) {
+				cartes.add(carte);
+			}
 
 		}
 
@@ -203,11 +209,8 @@ public class MoteurCartes {
 		
 		
 		Liste section = new Liste();
-		
-		
+			
 		Boolean bool = rand.nextBoolean();
-	
-		
 		int nbrLiens = courante.getNbLien();
 		int randInt = rand.nextInt(nbrLiens);
 		// obtient une fraction de l'individu
@@ -217,20 +220,19 @@ public class MoteurCartes {
 		if (rand.nextDouble() < config.getPourcentageMutation()) {
 			int indexLien = rand.nextInt(section.getNbrElements());
 
-			((Lien) section.getElement(indexLien)).mute
-			(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
+			((Lien) section.getElement(indexLien)).mute(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
 					rand.nextInt(2));
 		}
 		
 		// retire un lien pour favoriser solution courtes
 		double dalea = rand.nextDouble();
 		System.out.println("NextDouble alea : " + dalea);
+		
 		if (dalea < config.getPourcentageRetrait()) {
-			int indexLien = rand.nextInt(section.getNbrElements());
+			int nbelem = section.getNbrElements();
+			int indexLien = rand.nextInt(nbelem);
 			section.supprimer(indexLien);
 		}
-		
-		
 		return section;
 		
 	}
@@ -303,7 +305,7 @@ public class MoteurCartes {
 			Carte temp = new Carte(moteurDistanceMoyenne, config);
 
 			// selectionne 2 villes différentes au hasard
-			for (int j = 0; j < popVilles.getNbVilles() / 2; j++) {
+			for (int j = 0; j < popVilles.getNbVilles() /2; j++) {
 				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
 				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
 

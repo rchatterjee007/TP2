@@ -126,6 +126,21 @@ public class Liste {
 			}
 		}
 		iterateur = position;
+		
+		// FIN 
+		/*
+		if (position==0) {
+			pc=debut;
+		}
+		if(position==nbElements-1) {
+			pc=fin;
+		}
+		
+		pc=debut;
+		for(int i=0;i<position;i++) {
+			pc=pc.suivant;
+		}
+		*/
 
 	}
 
@@ -216,14 +231,7 @@ public class Liste {
 	 */
 	public Liste fusionnerListe(Liste liste) {
 
-		Liste nouvelleListe = new Liste();
-
-		for(int i=0; i<this.getNbrElements(); i++) {
-
-			Object tmp = this.getElement(i);
-			nouvelleListe.insererALaPosition(tmp, i);
-		}
-
+		Liste nouvelleListe = this;
 		for(int i=0; i<liste.getNbrElements(); i++) {
 
 			Object tmp = liste.getElement(i);
@@ -262,9 +270,24 @@ public class Liste {
 		return nouvelleListe;
 	}
 	
-	/***
-	 * Retourne la liste sous forme de caractères 
-	 */
+	public Object[] couperListeEnMorcaux(int morcaux) {
+		
+		Liste liste = new Liste();
+		Object[] liste2D = new Object[morcaux];
+		
+		int fin = getNbrElements()/morcaux;
+		int debut = 0;
+		for(int i = 0; i<morcaux; i++) {
+			
+			liste2D[i] = copie(debut, fin);
+			debut += iterateur;
+			iterateur += getNbrElements()- iterateur;
+			
+		}
+		return liste2D;
+	}
+	
+	
 	@Override
 	public String toString() {
 		String message = "";
@@ -275,4 +298,5 @@ public class Liste {
 		}
 		return message;
 	}
+
 }

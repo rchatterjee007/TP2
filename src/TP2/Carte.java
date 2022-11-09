@@ -27,7 +27,12 @@ public class Carte {
 		this.config = new CONFIGURATION();
 	}
 
-
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, Liste liste) {
+		this.score = 0.0;
+		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
+		this.liste = liste;
+		this.config = new CONFIGURATION();
+	}
 
 	/***
 	 * Constructeur par paramètres. 
@@ -42,7 +47,14 @@ public class Carte {
 	{
 		this.moteurDistanceMoyenne = 
 				(MoteurDistanceMoyenne) moteurDistanceMoyenne;
-		liste = section1.fusionnerListe(section2);
+		this.liste = section1;
+		/*
+		for(int i =0; i<section2.getNbrElements(); i++) {
+			Object elem = section2.getElement(i);
+			this.liste.insererALaPosition(elem, this.getNbLien());
+		}
+		*/
+		liste = liste.fusionnerListe(section2);
 		score = 0.0;
 	}
 
@@ -115,8 +127,10 @@ public class Carte {
 		double penL = config.getPenaliteLongeur();
 		double penDeconnecte = config.getPenaliteDeconnect();
 		double nbrDeconnecte = moteurDistanceMoyenne.getNbNonConnecte();
-		this.score = distanceM * penD + sommeL * penL + 
-				nbrDeconnecte * penDeconnecte;
+		if (liste.getNbrElements() > 0)
+		    this.score = (distanceM * penD) + (sommeL * penL) + 
+		    				(nbrDeconnecte * penDeconnecte);
+		else this.score = Double.POSITIVE_INFINITY;
 	}
 
 	/***
@@ -147,7 +161,7 @@ public class Carte {
 
 		Liste nouvelleListe;
 		if(duDebut == true) {
-			nouvelleListe = liste.copie(0, indexCoupe);
+			nouvelleListe = liste.copie(0, indexCoupe+1);
 		} else {
 			nouvelleListe = liste.copie(indexCoupe, getNbLien());
 		}

@@ -18,14 +18,14 @@ public class Constantes {
 
 	public static final double PENALITE_LONGUEUR = (double)(2000.0/MAX_X); //20.0
 	public static final double PENALITE_DISTANCE = (double)(100.0/MAX_X); //1
-	public static final int PENALITE_DECONNECTE = 1000;
+	public static final int PENALITE_DECONNECTE = 3000;
 	
 	//8
-	public static final int NB_VILLES = 8;
-	public static final int NB_ITERATIONS = 26;
+	public static final int NB_VILLES = 30;
+	public static final int NB_ITERATIONS = 100;
 	//20
 	//4
-	public static final int NB_CARTES_BASE = 2;
-	public static final int NB_CARTES_MAX = 4;
+	public static final int NB_CARTES_BASE = 20;
+	public static final int NB_CARTES_MAX = 60;
 
 }

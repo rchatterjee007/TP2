@@ -21,8 +21,12 @@ public class Lien {
 	 * Constructeur par défaut qui initialise les deux ville à vide 
 	 * */
 	public Lien() {
-		this.villeDestination= new Ville();
-		this.villeSource= new Ville();
+		
+		this.villeDestination= null;
+		this.villeSource= null;
+		
+		//this.villeDestination= new Ville();
+		//this.villeSource= new Ville();
 	}
 
 	/**
@@ -149,12 +153,16 @@ public class Lien {
 	 * */
 	public boolean mute(Ville nouvelleVille, int position) {
 		boolean changementEffectue=false;	
-		if(this.estMembre(nouvelleVille)==false) {
-			//SI CETTE VILLE NE FAIT PAS PARTIE DU LIEN... 
+		if(!this.estMembre(nouvelleVille)) {
+			//SI CETTE VILLE NE FAIT PAS PARTIE DU LIEN...
+			
 			if(position==0) {
+				
 				this.setVilleSource(nouvelleVille);
 				changementEffectue=true;
+				
 			}else if(position==1) {
+				
 				this.setVilleDestination(nouvelleVille);
 				changementEffectue=true;
 			}
