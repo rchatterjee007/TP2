@@ -124,11 +124,6 @@ public class MoteurDistanceMoyenne {
 		return nbDeconnecte;
 	}
 
-	
-	
-	
-	
-	
 	/**
 	 * Construit l'arbre pour la ville i
 	 *

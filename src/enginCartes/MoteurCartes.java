@@ -118,7 +118,7 @@ public class MoteurCartes {
 			while(trouverPositon) {
 				double scoreCarteMilieu = meilleurCartes.get(pos).getScore();
 				
-				if(scoreCarte > scoreCarteMilieu) {
+				if(scoreCarte >= scoreCarteMilieu) {
 					meilleurCartes.add(pos, carte);
 					trouverPositon = true;
 				} else {
@@ -159,8 +159,13 @@ public class MoteurCartes {
 			Liste section2 = obtientUneCoupe(sommeScore);
 			
 			// assemble et ajoute le nouvel individu
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, 
-					section2, config));
+			
+			Carte carte = new Carte(moteurDistanceMoyenne, section1, 
+					section2, config);
+			
+			if(carte.getNbLien() != 0) {
+				cartes.add(carte);
+			}
 
 		}
 
@@ -204,37 +209,29 @@ public class MoteurCartes {
 		
 		
 		Liste section = new Liste();
+			
+		Boolean bool = rand.nextBoolean();
+		int nbrLiens = courante.getNbLien();
+		int randInt = rand.nextInt(nbrLiens);
+		// obtient une fraction de l'individu
+		section = courante.obtientFraction(bool, randInt);
 		
+		// applique une mutation si nécessaire
+		if (rand.nextDouble() < config.getPourcentageMutation()) {
+			int indexLien = rand.nextInt(section.getNbrElements());
+
+			((Lien) section.getElement(indexLien)).mute(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
+					rand.nextInt(2));
+		}
 		
+		// retire un lien pour favoriser solution courtes
+		double dalea = rand.nextDouble();
+		System.out.println("NextDouble alea : " + dalea);
 		
-	
-		if(courante.getNbLien() != 0) {
-			
-			Boolean bool = rand.nextBoolean();
-			int nbrLiens = courante.getNbLien();
-			int randInt = rand.nextInt(nbrLiens);
-			
-			
-			// obtient une fraction de l'individu
-			section = courante.obtientFraction(bool, randInt);
-			
-			// applique une mutation si nécessaire
-			if (rand.nextDouble() < config.getPourcentageMutation()) {
-				int indexLien = rand.nextInt(section.getNbrElements());
-	
-				((Lien) section.getElement(indexLien)).mute(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
-						rand.nextInt(2));
-			}
-			
-			// retire un lien pour favoriser solution courtes
-			double dalea = rand.nextDouble();
-			System.out.println("NextDouble alea : " + dalea);
-			if (dalea < config.getPourcentageRetrait()) {
-				int nbelem = section.getNbrElements();
-				int indexLien = rand.nextInt(nbelem);
-				section.supprimer(indexLien);
-			}
-		
+		if (dalea < config.getPourcentageRetrait()) {
+			int nbelem = section.getNbrElements();
+			int indexLien = rand.nextInt(nbelem);
+			section.supprimer(indexLien);
 		}
 		return section;
 		

@@ -60,13 +60,12 @@ public class ProgrammePrincipal{
         }
 
         // Affiche la population des villes.
-        System.out.println(popVilles);
-        enginCartes.evalueLesScores(true);
+        //System.out.println(popVilles);
+       
         
         // Affiche la meilleur solution.
-        enginCartes.getMeilleurSolution();
-        enginCartes.toString();
-        
+        //System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
+        enginCartes.evalueLesScores(true);
         
     }
 
