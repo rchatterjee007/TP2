@@ -47,7 +47,6 @@ public class MoteurDistanceMoyenne {
 	// La population reçue par le constructeur.
 	private PopulationVilles popVilles;
 
-	// 
 	private double distanceMoyenne = 0.0;
 	private int nbDeconnecte = 0;
 
@@ -188,7 +187,7 @@ public class MoteurDistanceMoyenne {
 		Noeud noeud = arbre.get(noeudADevelopper);
 		Ville villeSource = noeud.getSource();
 		
-		listeLiens.deplacerPc(0);
+		//listeLiens.deplacerPc(0);
 		
 		//On parcours les liens
 		for(int i=0; i<listeLiens.getNbrElements(); i++) {
@@ -210,15 +209,15 @@ public class MoteurDistanceMoyenne {
 					
 					int niveau = noeud.getNiveau();
 					
-					double dist = lien.getDistance();
+					double dist = villeSource.distanceAvec(villeDest);
 					
-					Noeud noeudAvecVilleDest = new Noeud(dist, niveau++, 
+					Noeud noeudAvecVilleDest = new Noeud(dist, niveau+1, 
 							villeDest);
 					arbre.add(noeudAvecVilleDest);
 					listeSource.add(villeDest);
 				}	
 			}
-			listeLiens.deplacerPc(i);
+			//listeLiens.deplacerPc(i);
 		}
 	}
 

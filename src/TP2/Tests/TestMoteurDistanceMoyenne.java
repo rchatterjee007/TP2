@@ -1,4 +1,6 @@
 package TP2.Tests;
+import java.util.Random;
+
 import TP2.Carte;
 import TP2.Lien;
 import TP2.Ville;
@@ -18,7 +20,7 @@ public class TestMoteurDistanceMoyenne {
 		CONFIGURATION conf = new CONFIGURATION();
 		PopulationVilles popsVille = new PopulationVilles(conf);
 		MoteurDistanceMoyenne mtdm = new MoteurDistanceMoyenne(popsVille);
-		
+		/*
 		Liste section1 = new Liste();
 		Liste section2 = new Liste();
 		
@@ -58,8 +60,24 @@ public class TestMoteurDistanceMoyenne {
 		
 		}
 		
-		Carte carte = new Carte(mtdm, section1, section2, conf);
 		
+		Carte carte = new Carte(mtdm, section1, section2, conf);
+		*/
+		Liste liste = new Liste();
+		Random rand = new Random();
+		for (int j = 0; j < popsVille.getNbVilles(); j++) {
+			Ville villeA = popsVille.getVille(rand.nextInt(popsVille.getNbVilles()));
+			Ville villeB = popsVille.getVille(rand.nextInt(popsVille.getNbVilles()));
+
+			while (villeA == villeB) {
+				villeB = popsVille.getVille(rand.nextInt(popsVille.getNbVilles()));
+			}
+
+			// temp.ajouterLien(new Lien(villeA,villeB));
+			liste.insererALaPosition(new Lien(villeA, villeB), liste.getNbrElements());
+		}
+		Carte carte = new Carte(mtdm, liste);
 		carte.evalueScore(true);
+		
 	}
 }

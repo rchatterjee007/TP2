@@ -49,6 +49,20 @@ public class TestListe {
 		l.supprimer(6);
 		
 		System.out.println(l.toString());
+		
+		Liste l2 = new Liste();
+		Liste l3 = new Liste();
+		
+		for(int i=0; i<10; i++) {
+			l2.insererALaPosition(i, i);
+		}
+		for(int i=0; i<4; i++) {
+			l3.insererALaPosition(i, i);
+		}
+		
+		Liste lRe = l2.fusionnerListe(l3);
+		
+
 	}
 
 }

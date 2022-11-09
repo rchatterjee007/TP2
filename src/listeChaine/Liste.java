@@ -54,7 +54,11 @@ public class Liste {
 		iterateur=0;
 	}
 
-	//Insertion d'un elem dans la liste par position
+	/***
+	 * Methode Insertion
+	 * @param element Nouveau Objet à insérer dans la liste 
+	 * @param position à laquelle il faut insérer l'élément
+	 */
 	public void insererALaPosition(Object element, int position) {
 
 		//La liste est vide
@@ -104,7 +108,10 @@ public class Liste {
 		nbElements++;
 	}
 
-	// Deplacer pc à l'elem de la position donnée
+	/***
+	 * Déplacement du position courante à une position
+	 * @param position à laquelle se retrouve l'element
+	 */
 	public void deplacerPc(int position) {
 		if(position < iterateur) {
 			Noeud tmp = debut;
@@ -119,20 +126,42 @@ public class Liste {
 			}
 		}
 		iterateur = position;
+		
+		// FIN 
+		/*
+		if (position==0) {
+			pc=debut;
+		}
+		if(position==nbElements-1) {
+			pc=fin;
+		}
+		
+		pc=debut;
+		for(int i=0;i<position;i++) {
+			pc=pc.suivant;
+		}
+		*/
 
 	}
 
-	//Retourne l'elem de la position donnée
+	/***
+	 * Trouver l'élement de la position donné
+	 * @param position ou il faut retouner l'élément
+	 * @return l'élément de la position 
+	 */
 	public Object getElement(int position) {
 		deplacerPc(position);
 		return pc.element;
 	}
 
-	//Supprimer l'elem de la liste
+	/***
+	 * Supprimer un élément
+	 * @param position à laquelle il faut supprimer l'élément 
+	 */
 	public void supprimer(int position) {
 
 		//Supprimer au début
-		if(position == 0 || nbElements == 1) {
+		if(position == 0) {
 			supprimerDebut();
 		}
 		//Supprimer à la fin
@@ -146,23 +175,23 @@ public class Liste {
 		nbElements--;
 	}
 
-	//Supprimer l'elem de la position donnée
+	/***
+	 * Supprimer un élément
+	 * @param position à laquelle il faut supprimer l'élément
+	 */
 	private void supprimerMilieu(int position) {
-
 		deplacerPc(position);
-
-
 		pc.element = pc.suivant.element;
 		pc.suivant = pc.suivant.suivant;
-
 		if(pc.suivant == null) {
 			fin = pc;
 		}
-
-
 	}
 
-	//Supprimer dernier elem de la liste
+	/***
+	 * Supprimer un élément
+	 * @param position à laquelle il faut supprimer l'élément (N/A)
+	 */
 	private void supprimerFin(int position) {
 
 		deplacerPc(position - 1);
@@ -172,8 +201,13 @@ public class Liste {
 
 	}
 
-	//Supprimer premier elem de la liste
+	/***
+	 * Supprimer un élément
+	 * @param position à laquelle il faut supprimer l'élément (N/A)
+	 */
 	private void supprimerDebut() {
+		
+		
 		debut = debut.suivant;
 		if(debut == null) {
 			fin = null;
@@ -182,22 +216,22 @@ public class Liste {
 
 	}
 
-	//Retourne nombre d'elem dans la liste
+	/***
+	 * Retourne le nombre d'éléments dans la liste 
+	 * @return nombre d'éléments dans la liste 
+	 */
 	public int getNbrElements() {
 		return nbElements;
 	}
 
-	//Combiner les elem des deux listes en une
+	/***
+	 * Combine deux listes en une 
+	 * @param liste à combiner dans la présente (this)
+	 * @return la nouvelle liste avec les éléments des deux listes
+	 */
 	public Liste fusionnerListe(Liste liste) {
 
-		Liste nouvelleListe = new Liste();
-
-		for(int i=0; i<this.getNbrElements(); i++) {
-
-			Object tmp = this.getElement(i);
-			nouvelleListe.insererALaPosition(tmp, i);
-		}
-
+		Liste nouvelleListe = this;
 		for(int i=0; i<liste.getNbrElements(); i++) {
 
 			Object tmp = liste.getElement(i);
@@ -208,11 +242,17 @@ public class Liste {
 		return nouvelleListe;
 	}
 
-	//Retourne une clone de la liste 
+	/***
+	 * Nouvelle liste  
+	 * @param debut premier elem de la liste 
+	 * @param fin dernier elem de la liste 
+	 * @return une copie de la liste fournie
+	 */
 	public Liste copie(int debut, int fin) {
 
 		Liste nouvelleListe = new Liste();
 		Object element;
+		//SI UN ELEM SEULEMENT 
 		if(debut == fin) {
 			element = this.getElement(debut);
 			
@@ -229,25 +269,9 @@ public class Liste {
 		}
 		return nouvelleListe;
 	}
-	
-	public Object[] couperListeEnMorcaux(int morcaux) {
-		
-		Liste liste = new Liste();
-		Object[] liste2D = new Object[morcaux];
-		
-		int fin = getNbrElements()/morcaux;
-		int debut = 0;
-		for(int i = 0; i<morcaux; i++) {
-			
-			liste2D[i] = copie(debut, fin);
-			debut += iterateur;
-			iterateur += getNbrElements()- iterateur;
-			
-		}
-		return liste2D;
-	}
-	
-	
+	/***
+	 * Retourne la liste sous forme de caractères 
+	 */
 	@Override
 	public String toString() {
 		String message = "";
@@ -258,4 +282,5 @@ public class Liste {
 		}
 		return message;
 	}
+
 }
