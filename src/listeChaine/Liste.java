@@ -126,22 +126,6 @@ public class Liste {
 			}
 		}
 		iterateur = position;
-		
-		// FIN 
-		/*
-		if (position==0) {
-			pc=debut;
-		}
-		if(position==nbElements-1) {
-			pc=fin;
-		}
-		
-		pc=debut;
-		for(int i=0;i<position;i++) {
-			pc=pc.suivant;
-		}
-		*/
-
 	}
 
 	/***

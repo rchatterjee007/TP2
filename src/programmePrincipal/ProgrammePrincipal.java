@@ -30,6 +30,7 @@ public class ProgrammePrincipal{
 
         // Crée une population de villes.
     	CONFIGURATION config= new CONFIGURATION();
+    	MoteurDistanceMoyenne mtdm;
     	PopulationVilles popVilles =
     			new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
 
@@ -40,7 +41,7 @@ public class ProgrammePrincipal{
         System.out.println(popVilles);
 
         // Évalue les scores une première fois.
-    	enginCartes.evalueLesScores(true);
+    	enginCartes.evalueLesScores(false);
 
         // Maintenant, on procède à la boucle d'optimisation pour 
     	// trouver la solution.
@@ -64,8 +65,13 @@ public class ProgrammePrincipal{
        
         
         // Affiche la meilleur solution.
+        enginCartes.evalueLesScores(false);
+        
+        System.out.println(enginCartes.getMeilleurSolution().toString());
+        
+        enginCartes.evalueScoreMeilleurCartes(true);
         //System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
-        enginCartes.evalueLesScores(true);
+        //enginCartes.evalueLesScores(false);
         
     }
 

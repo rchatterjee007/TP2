@@ -65,10 +65,10 @@ public class MoteurCartes {
 		this.moteurDistanceMoyenne = new MoteurDistanceMoyenne(popVilles);
 		cartes = new Vector<Carte>(config.getNbCartesBase());
 		setPopulation(popVilles);
-		System.out.println("ZZZZ : "+cartes.get(0).getNbLien());
+		//System.out.println("ZZZZ : "+cartes.get(0).getNbLien());
 	}
 
-
+	
 
 
 	/**
@@ -93,11 +93,18 @@ public class MoteurCartes {
 			}
 			
 		}
-		System.out.println("Nbr carte apres placer : " + meilleurCartes.size());
+		/*System.out.println("Nbr carte apres placer : " + meilleurCartes.size());
 		System.out.println("TTTT : "+meilleurCartes.get(0).getNbLien());
+		*/
 		cartes = meilleurCartes;
 	}
 
+	/**
+	 * Place une carte dans un vecteur de type carte en ordre croissant de score
+	 * @param carte
+	 * @param meilleurCartes
+	 * @return un vecteur de carte
+	 */
 	private Vector<Carte> placer(Carte carte, Vector<Carte> meilleurCartes) {
 		double scoreCarte = carte.getScore();
 		double scoreCarteFin = meilleurCartes.
@@ -106,10 +113,10 @@ public class MoteurCartes {
 		double scoreCarteDebut = meilleurCartes.
 				get(meilleurCartes.size()-1).getScore();
 		
-		if(scoreCarte > scoreCarteDebut) {
+		if(scoreCarte < scoreCarteDebut) {
 			meilleurCartes.add(0, carte);
 		}
-		else if(scoreCarte < scoreCarteFin) {
+		else if(scoreCarte > scoreCarteFin) {
 			meilleurCartes.add(meilleurCartes.size(), carte);
 		}
 		else {
@@ -118,7 +125,7 @@ public class MoteurCartes {
 			while(trouverPositon) {
 				double scoreCarteMilieu = meilleurCartes.get(pos).getScore();
 				
-				if(scoreCarte >= scoreCarteMilieu) {
+				if(scoreCarte <= scoreCarteMilieu) {
 					meilleurCartes.add(pos, carte);
 					trouverPositon = true;
 				} else {
@@ -163,9 +170,11 @@ public class MoteurCartes {
 			Carte carte = new Carte(moteurDistanceMoyenne, section1, 
 					section2, config);
 			
-			if(carte.getNbLien() != 0) {
+			if(carte.getNbLien() > 0) {
 				cartes.add(carte);
 			}
+			
+			
 
 		}
 
@@ -204,7 +213,7 @@ public class MoteurCartes {
 			i++;
 		}
 		
-		System.out.println("Nbr de cartes: " + cartes.size());
+		System.out.println("Carte " + cartes.size());
 		System.out.println("Nbr liens : " + courante.getNbLien());
 		
 		
@@ -226,13 +235,14 @@ public class MoteurCartes {
 		
 		// retire un lien pour favoriser solution courtes
 		double dalea = rand.nextDouble();
-		System.out.println("NextDouble alea : " + dalea);
+		//System.out.println("NextDouble alea : " + dalea);
 		
 		if (dalea < config.getPourcentageRetrait()) {
 			int nbelem = section.getNbrElements();
 			int indexLien = rand.nextInt(nbelem);
 			section.supprimer(indexLien);
 		}
+		
 		return section;
 		
 	}
@@ -241,13 +251,21 @@ public class MoteurCartes {
 	 * Calcul les scores des cartes
 	 */
 	public void evalueLesScores(Boolean afficher) {
-		//double score = 0.0;
-		// à compléter
 		
 		for (int i = 0; i < cartes.size(); i++) {
 			cartes.get(i).evalueScore(afficher);
 		}
-		//return score;
+
+
+	}
+	
+	/**
+	 * Calcul le score de la meilleur carte
+	 */
+	public void evalueScoreMeilleurCartes(Boolean afficher) {
+		//double score = 0.0;
+		// à compléter
+		cartes.get(0).evalueScore(afficher);
 
 	}
 
