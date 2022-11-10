@@ -87,15 +87,18 @@ public class MoteurDistanceMoyenne {
 				new double[popVilles.getNbVilles()][popVilles.getNbVilles()];
 		// À partir de la population de villes
 		// pour chaque ville...
+
 		for(int i=0;i<popVilles.getNbVilles();i++){
 			ArrayList<Noeud> arbre = construireArbre(listeLiens, i, afficher);
 			// Remplit la ligne de la matrice de distances.
+
 			for(int j=0;j<arbre.size();j++){
 				Noeud ceNoeud = arbre.get(j);
 				// Pour la lisibilité du code.
 				int indice = ceNoeud.getSource().getNumero();
 				distances[i][indice] = ceNoeud.getDistanceTete();
 			}
+
 		}
 		// Affiche matrice de distances si demandée.
 		if(afficher){
@@ -133,10 +136,12 @@ public class MoteurDistanceMoyenne {
 				popVilles.getVille(indice));
 		listeSources.add(noeud.getSource());
 		arbre.add(noeud);
+
 		for(int i=0; i<arbre.size(); i++) {
 			//Ici on ajoute les autre noeud
 			developperNoeud(arbre, listeSources, listeLiens, i);
 		}
+
 		return arbre;
 	}
 
@@ -158,15 +163,18 @@ public class MoteurDistanceMoyenne {
 		Noeud noeud = arbre.get(noeudADevelopper);
 		Ville villeSource = noeud.getSource();
 		//On parcours les liens
+
 		for(int i=0; i<listeLiens.getNbrElements(); i++) {
 			//On récupère un lien
 			Lien lien = (Lien) listeLiens.getElement(i);
 			//On regarde si la ville reçue du noeud fait partie du lien
+
 			if(lien.estMembre(villeSource)) {
 				//On récupère la ville destination du lien
 				Ville villeDest = lien.getDest(villeSource);
 				//On regarde si la liste des villes sources contient la ville
 				//destination
+
 				if(!listeSource.contains(villeDest)) {
 					int niveau = noeud.getNiveau();
 					double dist = villeSource.distanceAvec(villeDest);
@@ -175,7 +183,9 @@ public class MoteurDistanceMoyenne {
 					arbre.add(noeudAvecVilleDest);
 					listeSource.add(villeDest);
 				}	
+
 			}
+
 		}
 	}
 
@@ -191,13 +201,16 @@ public class MoteurDistanceMoyenne {
 		nbDeconnecte = 0;
 		// Fait la somme des distance de la matrice triangulaire.
 		for(int i=1;i<distances.length;i++){
+
 			for(int j=0;j<i;j++){
 				// Compte les villes non connectées.
+
 				if(distances[i][j]!=0.0){
 					distanceMoyenne+=distances[i][j];
 				}else{
 					nbDeconnecte += 1;
 				}
+
 			}
 		}
 		// Calcule de la moyenne en divisant par le nombre d'éléments (n^2)/2.
