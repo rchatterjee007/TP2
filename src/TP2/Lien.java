@@ -22,8 +22,8 @@ public class Lien {
 	 * */
 	public Lien() {
 
-		this.villeDestination= null;
-		this.villeSource= null;
+		this.villeDestination = new Ville();
+		this.villeSource = new Ville();
 	}
 
 	/**
@@ -89,18 +89,24 @@ public class Lien {
 	/**
 	 * Retourne true, si la ville reçue en paramètre est 
 	 * l’une des deux villes connectées; false, sinon.
-	 * **/
+	 * @param ville
+	 * @return
+	 */
 	public boolean estMembre(Ville ville) {
 		return villeSource.equals(ville) || villeDestination.equals(ville);
 	}
 
+	
 	/**
+	 * 
 	 * Retourne une référence à la ville 
 	 * qui complémente la ville reçue en paramètre.
-	 *  Dans le cas où la ville reçue n’est pas membre, 
-	 *  la méthode retourne null.
-	 * */
-
+	 * Dans le cas où la ville reçue n’est pas membre, 
+	 * la méthode retourne null.
+	 * 
+	 * @param ville
+	 * @return
+	 */
 	public Ville getDest(Ville ville) {
 		Ville uneVille=null;
 
@@ -137,6 +143,7 @@ public class Lien {
 	} 
 
 	/**
+	 * 
 	 * Cette méthode sert à modifier le lien en assignant une nouvelle ville 
 	 * selon la position {0 pour source et  1 pour destination}. 
 	 * 
@@ -144,7 +151,11 @@ public class Lien {
 	 * 2.	Si l’opération est valide, la nouvelleVille est mise à la position 
 	 * 		donnée et la méthode retourne true.Sinon, la méthode retourne false.
 
-	 * */
+	 * 
+	 * @param nouvelleVille
+	 * @param position
+	 * @return une valeur boolean si un changement a été effectué.
+	 */
 	public boolean mute(Ville nouvelleVille, int position) {
 		boolean changementEffectue=false;	
 		if(!this.estMembre(nouvelleVille)) {

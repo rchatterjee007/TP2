@@ -37,7 +37,7 @@ public class ProgrammePrincipal{
 		// Crée une population de cartes.
 		MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
 
-
+		// Affiche la population des villes.
 		System.out.println(popVilles);
 
 		// Évalue les scores une première fois.
@@ -48,7 +48,7 @@ public class ProgrammePrincipal{
 		for(int i=0;i<config.getNbIterations();i++)
 		{
 			// Affiche l'itération courante.
-			System.out.println("" + i);
+			System.out.println("itérateur : " + i);
 
 			// Itération d'optimisation: élargit, évalue et réduit.
 			enginCartes.elargieLaPopulation();
@@ -60,18 +60,11 @@ public class ProgrammePrincipal{
 
 		}
 
-		// Affiche la population des villes.
-		//System.out.println(popVilles);
-
-
 		// Affiche la meilleur solution.
 		enginCartes.evalueLesScores(false);
-
 		System.out.println(enginCartes.getMeilleurSolution().toString());
-
 		enginCartes.evalueScoreMeilleurCartes(true);
-		//System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
-		//enginCartes.evalueLesScores(false);
+
 
 	}
 
