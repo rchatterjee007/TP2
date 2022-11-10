@@ -72,7 +72,12 @@ public class Ville {
 		double y=ville2.position.getY()-this.position.getY();
 		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 	}
-	
+
+	/***
+	 * Comparaison de deux villes
+	 * @param v ville a comparer 
+	 * @return vrai si les villes sont pareils et faux si ils sont differents 
+	 */
 	public boolean equals(Ville v) {
 		return this.numero==v.numero&& this.position.equals(v.position);
 	}

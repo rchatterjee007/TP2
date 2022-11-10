@@ -53,7 +53,7 @@ public class Carte {
 			Object elem = section2.getElement(i);
 			this.liste.insererALaPosition(elem, this.getNbLien());
 		}
-		*/
+		 */
 		liste = liste.fusionnerListe(section2);
 		score = 0.0;
 	}
@@ -76,11 +76,17 @@ public class Carte {
 		score = 0.0;
 		this.config = config;
 	}
-	
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, CONFIGURATION config) {
+
+	/***
+	 * Constructeur avec parametres
+	 * @param moteurDistanceMoyenne une distance moyenne 
+	 * @param config configuration de la ville
+	 */
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, 
+			CONFIGURATION config) {
 		this(moteurDistanceMoyenne);
 		this.config = config;
-		
+
 	}
 
 
@@ -128,8 +134,8 @@ public class Carte {
 		double penDeconnecte = config.getPenaliteDeconnect();
 		double nbrDeconnecte = moteurDistanceMoyenne.getNbNonConnecte();
 		if (liste.getNbrElements() > 0)
-		    this.score = (distanceM * penD) + (sommeL * penL) + 
-		    				(nbrDeconnecte * penDeconnecte);
+			this.score = (distanceM * penD) + (sommeL * penL) + 
+			(nbrDeconnecte * penDeconnecte);
 		else this.score = Double.POSITIVE_INFINITY;
 	}
 

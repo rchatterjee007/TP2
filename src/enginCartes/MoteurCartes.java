@@ -68,7 +68,7 @@ public class MoteurCartes {
 		//System.out.println("ZZZZ : "+cartes.get(0).getNbLien());
 	}
 
-	
+
 
 
 	/**
@@ -80,22 +80,19 @@ public class MoteurCartes {
 
 		Vector<Carte> meilleurCartes = new Vector<Carte>();
 		meilleurCartes.add(cartes.get(0));
-		
+
 		for(int i=1; i<cartes.size(); i++) {
-			
+
 			Carte carte = cartes.get(i);
-			
+
 			meilleurCartes = placer(carte, meilleurCartes);
-			
+
 			if(meilleurCartes.size() > config.getNbCartesBase()) {
-				
+
 				meilleurCartes.remove(meilleurCartes.size()-1);
 			}
-			
+
 		}
-		/*System.out.println("Nbr carte apres placer : " + meilleurCartes.size());
-		System.out.println("TTTT : "+meilleurCartes.get(0).getNbLien());
-		*/
 		cartes = meilleurCartes;
 	}
 
@@ -109,10 +106,10 @@ public class MoteurCartes {
 		double scoreCarte = carte.getScore();
 		double scoreCarteFin = meilleurCartes.
 				get(meilleurCartes.size()-1).getScore();
-		
+
 		double scoreCarteDebut = meilleurCartes.
 				get(meilleurCartes.size()-1).getScore();
-		
+
 		if(scoreCarte < scoreCarteDebut) {
 			meilleurCartes.add(0, carte);
 		}
@@ -124,7 +121,7 @@ public class MoteurCartes {
 			Boolean trouverPositon = false;
 			while(trouverPositon) {
 				double scoreCarteMilieu = meilleurCartes.get(pos).getScore();
-				
+
 				if(scoreCarte <= scoreCarteMilieu) {
 					meilleurCartes.add(pos, carte);
 					trouverPositon = true;
@@ -133,7 +130,7 @@ public class MoteurCartes {
 				}
 			}
 		}
-		
+
 		return meilleurCartes;
 	}
 
@@ -164,17 +161,17 @@ public class MoteurCartes {
 			// selectionne 2 coupes de parents aléatoirement
 			Liste section1 = obtientUneCoupe(sommeScore);
 			Liste section2 = obtientUneCoupe(sommeScore);
-			
+
 			// assemble et ajoute le nouvel individu
-			
+
 			Carte carte = new Carte(moteurDistanceMoyenne, section1, 
 					section2, config);
-			
+
 			if(carte.getNbLien() > 0) {
 				cartes.add(carte);
 			}
-			
-			
+
+
 
 		}
 
@@ -209,56 +206,57 @@ public class MoteurCartes {
 
 			courante = cartes.get(i);
 			accumulationScore += courante.getScore();
-  
+
 			i++;
 		}
-		
+
 		System.out.println("Carte " + cartes.size());
 		System.out.println("Nbr liens : " + courante.getNbLien());
-		
-		
+
+
 		Liste section = new Liste();
-			
+
 		Boolean bool = rand.nextBoolean();
 		int nbrLiens = courante.getNbLien();
 		int randInt = rand.nextInt(nbrLiens);
 		// obtient une fraction de l'individu
 		section = courante.obtientFraction(bool, randInt);
-		
+
 		// applique une mutation si nécessaire
 		if (rand.nextDouble() < config.getPourcentageMutation()) {
 			int indexLien = rand.nextInt(section.getNbrElements());
 
-			((Lien) section.getElement(indexLien)).mute(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
+			((Lien) section.getElement(indexLien)).mute
+			(popVilles.getVille(rand.nextInt(popVilles.getNbVilles())),
 					rand.nextInt(2));
 		}
-		
+
 		// retire un lien pour favoriser solution courtes
 		double dalea = rand.nextDouble();
 		//System.out.println("NextDouble alea : " + dalea);
-		
+
 		if (dalea < config.getPourcentageRetrait()) {
 			int nbelem = section.getNbrElements();
 			int indexLien = rand.nextInt(nbelem);
 			section.supprimer(indexLien);
 		}
-		
+
 		return section;
-		
+
 	}
 
 	/**
 	 * Calcul les scores des cartes
 	 */
 	public void evalueLesScores(Boolean afficher) {
-		
+
 		for (int i = 0; i < cartes.size(); i++) {
 			cartes.get(i).evalueScore(afficher);
 		}
 
 
 	}
-	
+
 	/**
 	 * Calcul le score de la meilleur carte
 	 */
@@ -324,11 +322,14 @@ public class MoteurCartes {
 
 			// selectionne 2 villes différentes au hasard
 			for (int j = 0; j < popVilles.getNbVilles() /2; j++) {
-				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
-				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
+				Ville villeA = popVilles.getVille
+						(rand.nextInt(popVilles.getNbVilles()));
+				Ville villeB = popVilles.getVille
+						(rand.nextInt(popVilles.getNbVilles()));
 
 				while (villeA == villeB) {
-					villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
+					villeB = popVilles.getVille
+							(rand.nextInt(popVilles.getNbVilles()));
 				}
 
 				// temp.ajouterLien(new Lien(villeA,villeB));

@@ -21,12 +21,9 @@ public class Lien {
 	 * Constructeur par défaut qui initialise les deux ville à vide 
 	 * */
 	public Lien() {
-		
+
 		this.villeDestination= null;
 		this.villeSource= null;
-		
-		//this.villeDestination= new Ville();
-		//this.villeSource= new Ville();
 	}
 
 	/**
@@ -45,8 +42,6 @@ public class Lien {
 	 * @param lien dont les valeurs sont à copier dans ce lien
 	 */
 	public Lien(Lien lien) {
-		// TODO Auto-generated constructor stub
-
 		this.villeDestination= lien.villeDestination;
 		this.villeSource= lien.villeSource;
 	}
@@ -126,7 +121,6 @@ public class Lien {
 	 * */
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
 		return (Ville)this.clone();
 	}
 
@@ -155,19 +149,14 @@ public class Lien {
 		boolean changementEffectue=false;	
 		if(!this.estMembre(nouvelleVille)) {
 			//SI CETTE VILLE NE FAIT PAS PARTIE DU LIEN...
-			
-			if(position==0) {
-				
+			if(position==0) {			
 				this.setVilleSource(nouvelleVille);
 				changementEffectue=true;
-				
 			}else if(position==1) {
-				
 				this.setVilleDestination(nouvelleVille);
 				changementEffectue=true;
 			}
 		}
-
 		return changementEffectue;
 	}
 }

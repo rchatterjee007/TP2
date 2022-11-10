@@ -190,8 +190,8 @@ public class Liste {
 	 * @param position à laquelle il faut supprimer l'élément (N/A)
 	 */
 	private void supprimerDebut() {
-		
-		
+
+
 		debut = debut.suivant;
 		if(debut == null) {
 			fin = null;
@@ -239,39 +239,39 @@ public class Liste {
 		//SI UN ELEM SEULEMENT 
 		if(debut == fin) {
 			element = this.getElement(debut);
-			
+
 			nouvelleListe.insererALaPosition(element, debut);
-		
+
 		}
 		else {
 			for(int i=debut; i<fin; i++) {
 				element = this.getElement(i);
-				
+
 				nouvelleListe.insererALaPosition(element, i);
 			}
-		
+
 		}
 		return nouvelleListe;
 	}
-	
+
 	public Object[] couperListeEnMorcaux(int morcaux) {
-		
+
 		Liste liste = new Liste();
 		Object[] liste2D = new Object[morcaux];
-		
+
 		int fin = getNbrElements()/morcaux;
 		int debut = 0;
 		for(int i = 0; i<morcaux; i++) {
-			
+
 			liste2D[i] = copie(debut, fin);
 			debut += iterateur;
 			iterateur += getNbrElements()- iterateur;
-			
+
 		}
 		return liste2D;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		String message = "";

@@ -71,7 +71,7 @@ public class Point2D {
 		// TODO Auto-generated method stub
 		return (Point2D)xy.clone();
 	}
-	
+
 	//Retourne un point2D en caractères 
 	@Override
 	public String toString() {

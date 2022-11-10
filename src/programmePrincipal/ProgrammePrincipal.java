@@ -26,54 +26,54 @@ public class ProgrammePrincipal{
 	 *
 	 * @param args, inutilisé
 	 */
-    public static void main(String[] args){
+	public static void main(String[] args){
 
-        // Crée une population de villes.
-    	CONFIGURATION config= new CONFIGURATION();
-    	MoteurDistanceMoyenne mtdm;
-    	PopulationVilles popVilles =
-    			new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
+		// Crée une population de villes.
+		CONFIGURATION config= new CONFIGURATION();
+		MoteurDistanceMoyenne mtdm;
+		PopulationVilles popVilles =
+				new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
 
-        // Crée une population de cartes.
-        MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
+		// Crée une population de cartes.
+		MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
 
 
-        System.out.println(popVilles);
+		System.out.println(popVilles);
 
-        // Évalue les scores une première fois.
-    	enginCartes.evalueLesScores(false);
+		// Évalue les scores une première fois.
+		enginCartes.evalueLesScores(false);
 
-        // Maintenant, on procède à la boucle d'optimisation pour 
-    	// trouver la solution.
-        for(int i=0;i<config.getNbIterations();i++)
-        {
-        	// Affiche l'itération courante.
-        	System.out.println("" + i);
+		// Maintenant, on procède à la boucle d'optimisation pour 
+		// trouver la solution.
+		for(int i=0;i<config.getNbIterations();i++)
+		{
+			// Affiche l'itération courante.
+			System.out.println("" + i);
 
-        	// Itération d'optimisation: élargit, évalue et réduit.
-        	enginCartes.elargieLaPopulation();
-        	enginCartes.evalueLesScores(false);
-        	enginCartes.reduitLaPopulation();
+			// Itération d'optimisation: élargit, évalue et réduit.
+			enginCartes.elargieLaPopulation();
+			enginCartes.evalueLesScores(false);
+			enginCartes.reduitLaPopulation();
 
-        	// Affiche le meilleur score courant.
-        	enginCartes.afficheMeilleurScore();
+			// Affiche le meilleur score courant.
+			enginCartes.afficheMeilleurScore();
 
-        }
+		}
 
-        // Affiche la population des villes.
-        //System.out.println(popVilles);
-       
-        
-        // Affiche la meilleur solution.
-        enginCartes.evalueLesScores(false);
-        
-        System.out.println(enginCartes.getMeilleurSolution().toString());
-        
-        enginCartes.evalueScoreMeilleurCartes(true);
-        //System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
-        //enginCartes.evalueLesScores(false);
-        
-    }
+		// Affiche la population des villes.
+		//System.out.println(popVilles);
+
+
+		// Affiche la meilleur solution.
+		enginCartes.evalueLesScores(false);
+
+		System.out.println(enginCartes.getMeilleurSolution().toString());
+
+		enginCartes.evalueScoreMeilleurCartes(true);
+		//System.out.println("Meilleur score : " + enginCartes.getMeilleurSolution());
+		//enginCartes.evalueLesScores(false);
+
+	}
 
 }
 

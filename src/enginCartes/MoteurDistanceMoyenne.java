@@ -9,7 +9,8 @@ import problemeVilles.PopulationVilles;
 
 
 /**
- * Cette classe implémente le moteur de calcul de distance moyenne entre 2 villes. 
+ * Cette classe implémente le moteur de calcul de 
+ * distance moyenne entre 2 villes. 
  *  Elle est un singleton dont la référence est partagée par toutes les cartes.
  *
  * L'algorithme utilisé consiste à construire, pour chaque ville, un arbre à
@@ -69,34 +70,34 @@ public class MoteurDistanceMoyenne {
 	 * @return distance moyenne
 	 */
 	public double getDistanceMoyenne(Liste listeLiens, boolean afficher){
-		 
-		 /*
-		  * Stratégie : Calcule la distance moyenne pour la liste de liens reçue et 
-		  * la retourne.
-		  * 
-		  * Un arbre est construit ainsi qu'une matrice de sitance et  le 
-		  * calcul est finaliser dans une fonction locale.
-		  * 
-		  * Attention, un appel à cette méthode efface la distance préalablement 
-		  * calculée.
-		  * 
-		  */
-		 
-		 // Initialise la matrice de distances.
-		 double[][] distances = 
-				 	 new double[popVilles.getNbVilles()][popVilles.getNbVilles()];
 
-		 // À partir de la population de villes
+		/*
+		 * Stratégie : Calcule la distance moyenne pour la liste de liens 
+		 * reçue et la retourne.
+		 * 
+		 * Un arbre est construit ainsi qu'une matrice de sitance et  le 
+		 * calcul est finaliser dans une fonction locale.
+		 * 
+		 * Attention, un appel à cette méthode efface la distance préalablement 
+		 * calculée.
+		 * 
+		 */
+
+		// Initialise la matrice de distances.
+		double[][] distances = 
+				new double[popVilles.getNbVilles()][popVilles.getNbVilles()];
+
+		// À partir de la population de villes
 		// pour chaque ville...
 		for(int i=0;i<popVilles.getNbVilles();i++){
 
-			
+
 			ArrayList<Noeud> arbre = construireArbre(listeLiens, i, afficher);
 			// Remplit la ligne de la matrice de distances.
 			for(int j=0;j<arbre.size();j++){
-				
+
 				Noeud ceNoeud = arbre.get(j);
-				
+
 				// Pour la lisibilité du code.
 				int indice = ceNoeud.getSource().getNumero();
 				distances[i][indice] = ceNoeud.getDistanceTete();
@@ -114,7 +115,7 @@ public class MoteurDistanceMoyenne {
 		return distanceFinale(distances);
 	}
 
-	
+
 
 	/**
 	 * Obtient le nombre de villes non connectés.
@@ -132,20 +133,20 @@ public class MoteurDistanceMoyenne {
 	 * @return La liste de noeuds, contenant l'arbre.
 	 */
 	private ArrayList<Noeud> construireArbre(Liste listeLiens, 
-			                                  int indice,
-			                                  boolean afficher){
-		
+			int indice,
+			boolean afficher){
+
 		// Mettre vos deux liste ici (arbre et liste de sources).
 		ArrayList<Ville> listeSources = new ArrayList<Ville>();
 		ArrayList<Noeud> arbre = new ArrayList<Noeud>();
-		
-		
+
+
 		Noeud noeud = new Noeud(0, 0, 
 				popVilles.getVille(indice));
-		
+
 		listeSources.add(noeud.getSource());
 		arbre.add(noeud);
-		
+
 		for(int i=0; i<arbre.size(); i++) {
 			//Ici on ajoute les autre noeud
 			developperNoeud(arbre, listeSources, listeLiens, i);
@@ -165,44 +166,44 @@ public class MoteurDistanceMoyenne {
 	 * @param prochainNoeud, Index du noeud à développer.
 	 */
 	private void developperNoeud(ArrayList<Noeud> arbre,
-			                    ArrayList<Ville> listeSource,
-			                    Liste listeLiens,
-			                    int noeudADevelopper){
+			ArrayList<Ville> listeSource,
+			Liste listeLiens,
+			int noeudADevelopper){
 
-		
-        // Compléter ici
-		
+
+		// Compléter ici
+
 		//Le noeudADevelopper est la première ville source
 		Noeud noeud = arbre.get(noeudADevelopper);
 		Ville villeSource = noeud.getSource();
-		
+
 		//listeLiens.deplacerPc(0);
-		
+
 		//On parcours les liens
 		for(int i=0; i<listeLiens.getNbrElements(); i++) {
-			
+
 			//On récupère un lien
 			Lien lien = (Lien) listeLiens.getElement(i);
-			
+
 			//On regarde si la ville reçue du noeud fait partie du lien
 			if(lien.estMembre(villeSource)) {
-				
-				
+
+
 				//On récupère la ville destination du lien
 				Ville villeDest = lien.getDest(villeSource);
-				
+
 				//On regarde si la liste des villes sources contient la ville
 				//destination
-				
+
 				if(!listeSource.contains(villeDest)) {
-					
+
 					int niveau = noeud.getNiveau();
-					
+
 					double dist = villeSource.distanceAvec(villeDest);
-					
+
 					Noeud noeudAvecVilleDest = new Noeud(dist, niveau+1, 
 							villeDest);
-					
+
 					arbre.add(noeudAvecVilleDest);
 					listeSource.add(villeDest);
 				}	
@@ -225,16 +226,16 @@ public class MoteurDistanceMoyenne {
 
 		// Fait la somme des distance de la matrice triangulaire.
 		for(int i=1;i<distances.length;i++){
-			
+
 			for(int j=0;j<i;j++){
 
 				// Compte les villes non connectées.
 				if(distances[i][j]!=0.0){
-					
+
 					distanceMoyenne+=distances[i][j];
-					
+
 				}else{
-					
+
 					nbDeconnecte += 1;
 				}
 			}
@@ -242,7 +243,7 @@ public class MoteurDistanceMoyenne {
 
 		// Calcule de la moyenne en divisant par le nombre d'éléments (n^2)/2.
 		return distanceMoyenne /= 
-						(distances.length*distances.length -distances.length)/2;
+				(distances.length*distances.length -distances.length)/2;
 	}
 
 
@@ -253,7 +254,7 @@ public class MoteurDistanceMoyenne {
 	private void afficherArbre(ArrayList<Noeud> arbre){
 
 		for(int i=0;i<arbre.size();i++){
-			
+
 			Noeud ceNoeud = arbre.get(i);
 			System.out.println("");
 			System.out.println("Noeud: " + i);
@@ -270,18 +271,18 @@ public class MoteurDistanceMoyenne {
 	private void afficherMatriceDistance(double distances[][]){
 
 		for(int i=0;i<distances.length;i++){
-			
+
 			for(int j=0;j<i;j++){
-				
+
 				System.out.printf("%5.3f\t",distances[i][j]);
 			}
-			
+
 			System.out.println("");
 		}
 
 	}
 
-	
+
 	/*
 	 * Noeud pour un suivre les distances
 	 */
@@ -289,7 +290,7 @@ public class MoteurDistanceMoyenne {
 		private double distanceTete;
 		private int niveau;
 		private Ville villeSource;
-		
+
 		/***
 		 * Constructeur par copie de parametres
 		 * @param distanceTete Distance 
@@ -301,7 +302,7 @@ public class MoteurDistanceMoyenne {
 			this.niveau = niveau;
 			this.villeSource = villeSource;
 		}
-		
+
 		/***
 		 * Acceseur de la distance
 		 * @return  la distance 
@@ -332,7 +333,7 @@ public class MoteurDistanceMoyenne {
 			return "Ville(Noeud) : Niv " + niveau + " DistTete " +distanceTete +
 					" Ville Source " + villeSource;
 		}
-		
+
 	}
 
 }
