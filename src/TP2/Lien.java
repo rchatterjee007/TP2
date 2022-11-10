@@ -96,7 +96,7 @@ public class Lien {
 		return villeSource.equals(ville) || villeDestination.equals(ville);
 	}
 
-	
+
 	/**
 	 * 
 	 * Retourne une référence à la ville 

@@ -64,7 +64,7 @@ public class TestCarte {
 
 
 
-		
+
 		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		//Test avec constructeur moteurDistanceMoyenne 
 		Carte c= new Carte(mtdm);
@@ -91,16 +91,16 @@ public class TestCarte {
 		System.out.println("CARTE ORIGINALE: \n"+carte.toString());
 		System.out.println("Nombre de liens dans la carte :"+
 				carte.getNbLien());
-		
+
 		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
-		
+
 		//Test getScore()
 		carte.evalueScore(true);
 		System.out.println("Score de la carte : "+ carte.getScore());
-		
-		
-		
+
+
+
 		//Test evalueScore(true())
 		System.out.println("Score avec son affichage: \n");
 		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");

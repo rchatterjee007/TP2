@@ -32,10 +32,12 @@ public class ProgrammePrincipal{
 		CONFIGURATION config= new CONFIGURATION();
 		MoteurDistanceMoyenne mtdm;
 		PopulationVilles popVilles =
-				new PopulationVilles(config.getNbVilles(),config.getMaxX(),config.getMaxY());
+				new PopulationVilles
+				(config.getNbVilles(),config.getMaxX(),config.getMaxY());
 
 		// Crée une population de cartes.
-		MoteurCartes enginCartes = new MoteurCartes(popVilles,new CONFIGURATION());
+		MoteurCartes enginCartes = new MoteurCartes
+				(popVilles,new CONFIGURATION());
 
 		// Affiche la population des villes.
 		System.out.println(popVilles);

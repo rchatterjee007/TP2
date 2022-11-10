@@ -64,7 +64,7 @@ public class TestListe {
 
 		//Test fusionner liste
 		System.out.println("Test fusion de liste (l2 et l3)"+"/n");
-		
+
 		Liste l2 = new Liste();
 		Liste l3 = new Liste();
 
@@ -78,15 +78,15 @@ public class TestListe {
 		System.out.println(l2);
 		System.out.println("/n"+"ToString liste 3:");
 		System.out.println(l3);
-		
+
 		//Test fusioner avec deux listes
 		Liste lRe = l2.fusionnerListe(l3);
 		System.out.println("Avec deux liste : /n" + lRe);
-		
+
 		//Test fusioner liste vide avec liste
 		lRe = new Liste().fusionnerListe(l3);
 		System.out.println("Avec liste vide et liste : /n" + lRe);
-		
+
 		//Test fusionner avec liste avec liste vide
 		lRe = l2.fusionnerListe(new Liste());
 		System.out.println("Avec liste et liste vide : /n" + lRe);

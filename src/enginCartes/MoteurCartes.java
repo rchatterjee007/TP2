@@ -98,7 +98,7 @@ public class MoteurCartes {
 				get(meilleurCartes.size()-1).getScore();
 		double scoreCarteDebut = meilleurCartes.
 				get(meilleurCartes.size()-1).getScore();
-		
+
 		if(scoreCarte < scoreCarteDebut) {
 			meilleurCartes.add(0, carte);
 		}
@@ -118,7 +118,7 @@ public class MoteurCartes {
 				}
 			}
 		}
-		
+
 		return meilleurCartes;
 	}
 
@@ -133,11 +133,11 @@ public class MoteurCartes {
 		//qui combinent les gênes des parents.
 		// calcul la somme des scores de tous les parents
 		double sommeScore = 0.0;
-		
+
 		for (int i = 1; i < cartes.size(); i++) {
 			sommeScore += cartes.get(i).getScore();
 		}
-		
+
 		int nbCartesMax = config.getNbCartesMax();
 		int nbCartesBase = config.getNbCartesBase();
 		// pour tous les individues à générer
@@ -148,7 +148,7 @@ public class MoteurCartes {
 			// assemble et ajoute le nouvel individu
 			Carte carte = new Carte(moteurDistanceMoyenne, section1, 
 					section2, config);
-			
+
 			if(carte.getNbLien() > 0) {
 				cartes.add(carte);
 			}
@@ -178,16 +178,16 @@ public class MoteurCartes {
 		Carte courante = null;
 		int nbCartesBase = config.getNbCartesBase();
 		// selectionne l'individu en proportion du score
-		
+
 		while (i < nbCartesBase && accumulationScore <= nbAlea) {
 			courante = cartes.get(i);
 			accumulationScore += courante.getScore();
 			i++;
 		}
-		
+
 		System.out.println("Carte " + cartes.size());
 		System.out.println("Nbr liens : " + courante.getNbLien());
-		
+
 		Liste section = new Liste();
 		Boolean bool = rand.nextBoolean();
 		int nbrLiens = courante.getNbLien();
@@ -195,7 +195,7 @@ public class MoteurCartes {
 		// obtient une fraction de l'individu
 		section = courante.obtientFraction(bool, randInt);
 		// applique une mutation si nécessaire
-		
+
 		if (rand.nextDouble() < config.getPourcentageMutation()) {
 			int indexLien = rand.nextInt(section.getNbrElements());
 			((Lien) section.getElement(indexLien)).mute
@@ -204,7 +204,7 @@ public class MoteurCartes {
 		}
 		// retire un lien pour favoriser solution courtes
 		double dalea = rand.nextDouble();
-		
+
 		if (dalea < config.getPourcentageRetrait()) {
 			int nbelem = section.getNbrElements();
 			int indexLien = rand.nextInt(nbelem);
@@ -278,19 +278,19 @@ public class MoteurCartes {
 		moteurDistanceMoyenne = new MoteurDistanceMoyenne(popVilles);
 		this.popVilles = popVilles;
 		// crée la population de cartes initiales
-		
+
 		for (int i = 0; i < nbCartesBase; i++) {
 			// crée une nouvelle carte
 			// Carte temp = new Carte(moteurDistanceMoyenne, config);
 			Carte temp = new Carte(moteurDistanceMoyenne, config);
 			// selectionne 2 villes différentes au hasard
-			
+
 			for (int j = 0; j < popVilles.getNbVilles() /2; j++) {
 				Ville villeA = popVilles.getVille
 						(rand.nextInt(popVilles.getNbVilles()));
 				Ville villeB = popVilles.getVille
 						(rand.nextInt(popVilles.getNbVilles()));
-				
+
 				while (villeA == villeB) {
 					villeB = popVilles.getVille
 							(rand.nextInt(popVilles.getNbVilles()));

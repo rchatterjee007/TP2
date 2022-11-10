@@ -253,7 +253,7 @@ public class Liste {
 		}
 		return nouvelleListe;
 	}
-	
+
 
 
 	@Override
