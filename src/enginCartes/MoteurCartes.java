@@ -32,7 +32,6 @@ import TP2.Lien;
 import TP2.Ville;
 import problemeVilles.PopulationVilles;
 
-import enginCartes.CONFIGURATION;
 import listeChaine.Liste;
 
 public class MoteurCartes {
@@ -69,7 +68,7 @@ public class MoteurCartes {
 
 
 	/**
-	 * reduit la population de carte en ne gardant que les
+	 * Reduit la population de carte en ne gardant que les
 	 * CONFIGURATION.NB_CARTES_BASES ayant le plus bas score (minimization). 
 	 * Cette méthode opère sur les champs de la classe
 	 */

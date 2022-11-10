@@ -49,6 +49,7 @@ public class PopulationVilles {
 	}
 
 	/***
+	 * Accesseur des points de villes
 	 * @param config du region
 	 * @return un point2D avec coordonne au hazard
 	 */
@@ -60,6 +61,7 @@ public class PopulationVilles {
 	}
 
 	/***
+	 * Accesseur des points de ville avec coordonnée min max
 	 * @param x valeur max de X
 	 * @param y valeur max de Y
 	 * @return un point2D avec coordonne au hazard avec un min-max 

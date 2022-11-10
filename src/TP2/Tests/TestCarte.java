@@ -64,8 +64,8 @@ public class TestCarte {
 
 
 
-
-
+		
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		//Test avec constructeur moteurDistanceMoyenne 
 		Carte c= new Carte(mtdm);
 		System.out.println(c.toString());
@@ -77,7 +77,7 @@ public class TestCarte {
 
 
 
-
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		//Valider le fonctionnement de obtientFraction
 		System.out.println("CARTE ORIGINALE: \n"+carte.toString());
 		//debut a 3
@@ -86,18 +86,25 @@ public class TestCarte {
 		System.out.println("CARTE 3-4: \n"+(carte.obtientFraction(false, 3)));
 
 
-
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		//Test getNbLiens()
 		System.out.println("CARTE ORIGINALE: \n"+carte.toString());
 		System.out.println("Nombre de liens dans la carte :"+
 				carte.getNbLien());
-
+		
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
+		
 		//Test getScore()
 		carte.evalueScore(true);
 		System.out.println("Score de la carte : "+ carte.getScore());
-
+		
+		
+		
 		//Test evalueScore(true())
 		System.out.println("Score avec son affichage: \n");
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
+		System.out.println("****TEST AVEC LIEN COLLER EN DURE*****");
 		carte.evalueScore(true);
 		System.out.println("Score de la carte : "+ carte.getScore());
 
