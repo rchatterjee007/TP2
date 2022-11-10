@@ -140,9 +140,6 @@ public class MoteurDistanceMoyenne {
 		ArrayList<Noeud> arbre = new ArrayList<Noeud>();
 		
 		
-		
-        // Compléter icidouble distanceTete, int niveau, Ville villeSource
-		
 		Noeud noeud = new Noeud(0, 0, 
 				popVilles.getVille(indice));
 		
@@ -153,9 +150,6 @@ public class MoteurDistanceMoyenne {
 			//Ici on ajoute les autre noeud
 			developperNoeud(arbre, listeSources, listeLiens, i);
 		}
-		/*
-		 *  Fin - Simon
-		 */
 		return arbre;
 
 	}
@@ -208,11 +202,12 @@ public class MoteurDistanceMoyenne {
 					
 					Noeud noeudAvecVilleDest = new Noeud(dist, niveau+1, 
 							villeDest);
+					
 					arbre.add(noeudAvecVilleDest);
 					listeSource.add(villeDest);
 				}	
 			}
-			//listeLiens.deplacerPc(i);
+
 		}
 	}
 
@@ -285,6 +280,7 @@ public class MoteurDistanceMoyenne {
 		}
 
 	}
+
 	
 	/*
 	 * Noeud pour un suivre les distances
